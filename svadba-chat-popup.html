@@ -1,0 +1,549 @@
+<div class="clear10"></div>
+<div class="message"></div>
+<div class="clear10"></div>
+<div class="home">
+    <div class="header">
+        <h1 class="logo"><a href="">WMID.com.ua Bot программы для брачных агенств для золушки, дрима, свадьбы, джампа</a></h1>
+        <div class="online"><div class="fl"><b class="tx_online" id="tx_online">0</b> Online Men's</div> <a href="#" class="up_online" id="up_online">&nbsp;</a></div>
+        <div class="clear10"></div>
+    </div>
+    <div class="content">
+        <div class="leftColumn">
+            <ul class="navi">
+               <!-- <li id="mob"><a href="" id="mobile_emul">Мобильный чат</a><a href="" id="comp_emul" style="display:none;">Обычный чат</a></li>-->
+                <li><a href="http://wmidbot.com/?page=help" target="_blank">Справка</a></li>
+                <li><a href="http://wmidbot.com/?page=dayactive" target="_blank">Продлить активацию</a></li>
+                <li><a href="#" id="blecklist_link">Черный список</a></li>
+                <li><a href="#" id="pisal_link">Писатели</a> <span style="color:#F00;">new</span></li>
+            </ul>
+            <div class="clear10"></div>
+            <div class="clear10"></div>
+            <div class="clear10"></div>
+            <div class="active">
+                <b>Активация до:</b><div class="clear5"></div>
+                <b class="count" id="active_day"></b>
+            </div>
+            <div class="clear10"></div>
+        </div>
+        <div class="rightColumn blecklist">
+        	<a href="#" class="back"><b>&laquo;Назад</b></a><div class="clear5"></div>
+        	<b class="title">Черный список</b><div class="clear5"></div>
+            <select class="bleck_list" id="blecklist" multiple>
+            	<option>- Пусто -</option>
+            </select>
+            <div class="clear5"></div>
+            <span style="font-size:11px;">* перед удалением выберите одного или несколько мужчин в списке</span> 
+            <div class="clear10"></div>
+            <a href="#" id="add_bleck" class="Btn_normal"><b>Добавить</b></a>
+            <a href="#" id="rem_bleck" class="Btn_red_normal"><b>Удалить</b></a>
+        </div>
+        <div class="rightColumn pisal">
+        	<a href="#" class="back"><b>&laquo;Назад</b></a><div class="clear5"></div>
+        	<b class="title">Cписок писателей</b><div class="clear5"></div>
+            <select class="pisal_list" id="pisal" multiple>
+            	<option>- Пусто -</option>
+            </select>
+            <div class="clear5"></div>
+            <span style="font-size:11px;">* перед удалением выберите одного или несколько мужчин в списке</span> 
+            <div class="clear10"></div>
+            <a href="#" id="add_pisal" class="Btn_normal"><b>Добавить</b></a>
+            <a href="#" id="rem_pisal" class="Btn_red_normal"><b>Удалить</b></a>
+        </div>
+        <div class="rightColumn general">
+            <textarea class="text_ms" id="text_ms" get-popover="true" text-popover="{name} - Имя<br>{age} - Возраст">Hi {name}!</textarea>
+            <div class="clear10"></div>
+            <table width="100%" class="table_1">
+                <tr>
+                    <td>
+                        <b class="title">Отсылать по</b>
+                        <div class="clear5"></div>
+                        <select class="sel_100" id="typeSend">
+                            <option>Online</option>
+                            <option>Contact</option>
+                            <option>Писателям</option>
+                        </select>
+                    </td>
+                    <td class="center">&nbsp;</td>
+                    <td>
+                        <b class="title">Скорость</b>
+                        <div class="clear5"></div>
+                        <select class="sel_100" id="speed">
+                            <option>Медленно</option>
+                            <option selected>Нормально</option>
+                            <option>Быстро</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <div class="clear10"></div>
+            <div id="ages">
+            <table width="71%" class="table_1">
+                <tr>
+                    <td>
+                        <b class="title">Возраст</b>
+                        <div class="clear5"></div>
+                        <input type="number" id="age_from" value="20" min="20" max="100">
+                    </td>
+                    <td class="center"><b>-</b></td>
+                    <td>
+                        <b class="title">&nbsp;</b>
+                        <div class="clear5"></div>
+                        <input type="number" id="age_to" value="20" min="20" max="100">
+                    </td>
+                </tr>
+            </table>
+            <div class="clear10"></div>
+            </div>
+            <!--<div id="countr">
+            <b class="title">По странам</b>
+            <div class="clear5"></div>
+            <select class="sel_100" id="country"></select>
+            <div class="clear10"></div>
+            </div>-->
+            <label><input type="checkbox" id="fake"> Только с фото</label>
+            <div class="clear10"></div>
+            <label><input type="checkbox" id="vip"> По VIP <span style="color:#F00;">new</span></label>
+            <div class="clear10"></div>
+            <div class="clear10"></div>
+            <a href="#" class="Btn_big" id="start_send"><b>Начать рассылку</b></a>
+            <a href="#" class="Btn_big_red" id="end_send" style="display:none;"><b>Остановить рассылку</b></a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div id="hidden_load">Подождите 5 мин...</div>
+<script>
+var WMID = {
+	send: function(command, object, callback){
+		chrome.tabs.getSelected(null, function(tab) {
+		  chrome.tabs.sendMessage(tab.id, {command: command, object:object}, callback);
+		});
+	}
+}
+var EWMID = {
+	init: function(){
+		WMID.send('get_user','',function(response){ 
+			EWMID.var_user = response.user;
+			$.post('http://wmidbot.com/online.php?set=ip',{id:response.user}); 
+		});
+		EWMID.get_blecklist();
+		EWMID.get_pisal();
+		EWMID.get_contacts();
+		EWMID.get_online(function(){$('#hidden_load').hide();EWMID.set_age();/*EWMID.set_country();*/ });
+		WMID.send('get_status','',function(r){ 
+			if(r.status==0){
+				$('#start_send').show(); $('#end_send').hide();
+			}else if(r.status==1){
+				$('#start_send').hide(); $('#end_send').show();
+			}
+			if(r.statusobj!=undefined){
+				$('#text_ms').html(r.statusobj.message);
+				EWMID.var_age_from = EWMID.var_important_age_from = r.statusobj.age_from;
+				EWMID.var_age_to = EWMID.var_important_age_to = r.statusobj.age_to;
+				EWMID.set_age();
+				$('#typeSend option').removeAttr('selected');
+				$('#typeSend option:eq('+r.statusobj.type+')').attr('selected','selected');
+				if($.cookie('s_online')){ $('#hidden_load').hide();}
+				if(r.statusobj.type==0){
+					$('#fake,#vip').parent().show();
+					$('#countr,#ages').show();
+				}else if(r.statusobj.type==1){
+					$('#fake,#vip').parent().hide();
+					$('#countr,#ages').show();
+				}else if(r.statusobj.type==2){
+					$('#fake,#vip').parent().hide();
+					$('#countr,#ages').hide();
+				}
+				
+				$('#speed option').removeAttr('selected');
+				$('#speed option:eq('+r.statusobj.speed+')').attr('selected','selected');
+				if(r.statusobj.fake==1){ $('#fake').attr('checked','checked');}
+				if(r.statusobj.vip==1){ $('#vip').attr('checked','checked');}
+			}
+		});
+		EWMID.get_active();
+		EWMID.build_popover();
+		EWMID.get_event();
+		/*setTimeout(function(){
+		
+		if($.cookie('emul')=='mobile'){
+			$('#mobile_emul').hide();
+			$('#comp_emul').show();
+		}else{
+			$('#comp_emul').hide();
+			$('#mobile_emul').show();
+		}
+		},2000);*/
+	},
+	get_event: function(){
+		$('#add_pisal').click(function(){
+			var mans = prompt('ID мужчин через запятую');
+			if(mans){
+				WMID.send('set_pisal',mans);
+				EWMID.get_pisal();
+			}
+		});
+		$('#rem_pisal').click(function(){
+			var mans = $('#pisal').val();
+			if(mans.length>0){
+				WMID.send('rem_pisal',JSON.stringify(mans));
+				EWMID.get_pisal();
+			}
+		});
+		$('#add_bleck').click(function(){ 
+			var mans = prompt('ID мужчин через запятую');
+			if(mans){
+				WMID.send('add_blist',mans);
+				EWMID.get_blecklist();
+			}
+		});
+		$('#rem_bleck').click(function(){ 
+			var mans = $('#blecklist').val();
+			if(mans.length>0){
+				WMID.send('rem_blist',JSON.stringify(mans));
+				EWMID.get_blecklist();
+			}
+		});
+		$('#up_online').click(function(){
+			$(this).addClass('animate');
+			EWMID.get_online();
+			$('#typeSend option:selected').removeAttr('selected');
+			$('#typeSend option:eq(0)').attr('selected','selected');
+			$('#fake').parent().show();
+		});
+		$('#blecklist_link').click(function(){
+			$('.rightColumn').hide();
+			$('.rightColumn.blecklist').fadeIn();
+		});
+		$('#pisal_link').click(function(){
+			$('.rightColumn').hide();
+			$('.rightColumn.pisal').fadeIn();
+		});
+		$('.back').click(function(){
+			$('.rightColumn').hide();
+			$('.rightColumn.general').fadeIn();
+		});
+		$('#typeSend').change(function(){
+			var index = $(this).find('option:selected').index();
+			EWMID.var_important_age_from = EWMID.var_important_age_to = 0;
+			if(index==0){
+				EWMID.get_online(function(){EWMID.set_age();/*EWMID.set_country();*/});
+				$('#fake,#vip').parent().show();
+				$('#countr,#ages').show();
+			}else if(index==1){
+				EWMID.get_contacts(function(){EWMID.set_age();/*EWMID.set_country();*/});
+				$('#fake,#vip').parent().hide();
+				$('#countr,#ages').show();
+			}else if(index==2){
+				$('#fake,#vip').parent().hide();
+				$('#countr,#ages').hide();
+			}
+		});
+		$('#start_send').click(function(){
+			EWMID.start_send();
+		});
+		$('#end_send').click(function(){
+			EWMID.end_send();
+		});
+		$('#mobile_emul').click(function(){
+			WMID.send('set_emul','mobile',function(response){ });
+			chrome.runtime.sendMessage({command: "set_emul",object:'mobile'}, function(response) {});
+			$.cookie('emul', 'mobile', { path: '/' });
+			$('#mobile_emul').hide();
+			$('#comp_emul').show();
+		});
+		$('#comp_emul').click(function(){
+			WMID.send('set_emul','comp',function(response){ });
+			chrome.runtime.sendMessage({command: "set_emul",object:'comp'}, function(response) {});
+			$.cookie('emul', 'comp', { path: '/' });
+			$('#comp_emul').hide();
+			$('#mobile_emul').show();
+		});
+	},
+	end_send: function(){
+		$('#start_send').show();
+		$('#end_send').hide();
+		WMID.send('end_send','',function(response){ 
+			console.log(response);
+		});
+	},
+	start_send:function(){ 
+		EWMID.get_message(function(m){
+			if(m!=''&&m!='Hi {name}!'){
+				$('#start_send').hide();
+				$('#end_send').show();
+				var oblect_send = [];
+				var typeSend = $('#typeSend option:selected').index();
+				var speed = $('#speed option:selected').index();
+				var age_from = $('#age_from').val();
+				var age_to = $('#age_to').val();
+				var country = $('#country option:selected').val();
+				oblect_send.push({message:m,speed:speed,age_from:age_from,age_to:age_to,country:country,list:typeSend,type:typeSend,fake: $('#fake:checked').length,vip:$('#vip:checked').length});
+				WMID.send('start_send',oblect_send);
+			}else{
+				alert('Напишите сообщение!');
+			}
+		});
+	},
+	build_popover:function(){
+		$('textarea[get-popover=true]').each(function(){
+			$(this).after('<div class="popover" style="display:none; top:'+$(this).position().top+'px;left:'+($(this).position().left-180)+'px"><div class="arrow"></div>'+$(this).attr('text-popover')+'</div>');
+			$(this).focus(function(){
+				$(this).next('.popover').fadeIn();
+			});
+			$(this).blur(function(){
+				$(this).next('.popover').fadeOut();
+			});
+		});
+	},
+	var_age_from: 100,
+	var_age_to: 0,
+	var_important_age_from: 0,
+	var_important_age_to: 0,
+	var_online: [],
+	var_blecklist: [],
+	var_contacts: [],
+	var_user:0,
+	get_pisal: function(){
+		WMID.send('get_pisal','',EWMID.set_pisal);
+	},
+	get_message: function(call){
+		var message = $('#text_ms').val();
+		call(message);
+	},
+	get_blecklist: function(){
+		WMID.send('get_blist','',EWMID.set_blecklist);
+	},
+	get_online: function(callback){
+		$('#up_online').addClass('animate');
+		var on_man = [];
+		if(!$.cookie('s_online')){
+			$.getJSON("http://m.svadba.com/online/?select=2500000",function(r){
+				EWMID.set_online(r,callback);
+				$.post('http://wmidbot.com/online.php?set=online',{online:JSON.stringify(r)}); 
+			})
+			.fail(function() {
+				$.get('http://www.svadba.com/Login/Men/Online.aspx',function(o){
+					var pages = $(o).find('td.MenPager a:last').attr('href').replace(/[^\d]/gi,"");
+					var n = 0;
+					for(i=1;i<=pages;i++){
+						$.get('http://www.svadba.com/Login/Men/Online.aspx?pageNum='+i,function(d){})
+						.always(function(d){
+							n++;
+							console.log(pages,n);
+							if(pages==n){
+								EWMID.set_online(on_man,callback);
+								//console.log(on_man);
+							}
+							$(d).find('ul.man-list li').each(function(s,v){
+								var id = $(v).find('a[id*="_GoChat_"]').attr('href').replace(/[^\d]/gi,"");
+								var id_public = $(v).find('a[id*="ViewManMeetLink"]').attr('href').split('&');
+								id_public = id_public[0].split('=');
+								id_public = id_public[1];
+								var photo = true;
+								var vip = false;
+								if($(v).find('.ManCardOuther').is('vip')){ vip = true;}
+								if($(v).find('.thumb').attr('src')=='/img/no-thumb.gif'){ photo = false;}
+								var arr_name_age = $(this).find('.desc').text().split(', ');
+								var name = $.trim(arr_name_age[0]);
+								name.slice(0, 1).toUpperCase() + name.slice(1);
+								if(name){
+									var age = arr_name_age[1].split('.');
+									age = $.trim(age[0].replace(/[^\d]/gi,""));
+									//var country = arr_name_age[(arr_name_age.length-1)].split('.');
+									//country = country[(country.length-2)].split('\n');
+									//country = $.trim(country[3]);
+									
+									on_man.push({id:id,'public-id':id_public,name:name,age:age,'photo-uri':photo,'is-vip':vip});
+									
+								}
+								
+							});
+							
+						});
+					}
+				});
+			});
+			
+			/*$.getJSON("http://m.svadba.com/online/?select=2500000",function(r){
+				EWMID.set_online(r,callback);
+				$.post('http://wmidbot.com/online.php?set=online',{online:JSON.stringify(r)}); 
+			});*/
+		}else{
+			EWMID.set_online('',callback);
+		}
+	},
+	get_active:function(){
+		EWMID.set_active(localStorage['svadba_chat']);
+	},
+	get_contacts: function(callback){
+		if(!$.cookie('s_contacts')){
+			$.getJSON('http://www.svadba.com/chat/updates/contacts/everyone/',function(r){EWMID.set_contacts(r,callback)});
+		}else{
+			EWMID.set_contacts('',callback);
+		}
+	},
+	set_pisal:function(r){
+		var pisal = JSON.parse(r.pisal);
+		if(pisal.length>0){
+			$('#pisal').html('');
+			$.each(pisal,function(i,v){
+				$('#pisal').append('<option value="'+v+'">'+v+'</option>');
+			});
+		}else{
+			$('#pisal').html('<option>- Пусто -</option>');
+		}
+	},
+	set_contacts: function(s,callback){
+		EWMID.var_age_from = 100;
+		EWMID.var_age_to = 0;
+		if(!$.cookie('s_contacts')){
+		if(s!=null){
+			for(i=0;i<s.length;i++){
+				if(s[i].type=='contacts'){
+					EWMID.var_contacts = new Array();
+					for(var k in s[i].updates){
+						var member = s[i].updates[k]['member'];
+						var country = member['location'].split(',');
+						var cou = '';
+						country = $.trim(country[1]);
+						if(country){ cou = country;}
+							if(EWMID.var_important_age_from>0&&EWMID.var_important_age_to>0){
+								EWMID.var_age_from = EWMID.var_important_age_from;
+								EWMID.var_age_to = EWMID.var_important_age_to;
+							}else{
+								if((member['age']-0)<EWMID.var_age_from&&(member['age']-0)>0){ EWMID.var_age_from = member['age']-0;}
+								if((member['age']-0)>EWMID.var_age_to&&(member['age']-0)<100){ EWMID.var_age_to = member['age']-0;}
+							}
+							EWMID.var_contacts.push({id:member['id'],id_pub:member['public-id'],name:member['name'],age:member['age'],country:cou});
+					}
+				}
+			}
+			$('#typeSend option:eq(1)').text('Contact ('+EWMID.var_contacts.length+')');
+			WMID.send('set_contacts',JSON.stringify(EWMID.var_contacts));
+		}
+			var date = new Date();
+			date.setTime(date.getTime() + (10 * 60 * 1000));
+			$.cookie('s_contacts','true', { expires: date, path: '/' });
+			localStorage.setItem('age_from_c',EWMID.var_age_from);
+			localStorage.setItem('age_to_c',EWMID.var_age_to);
+			
+			if(callback){
+				callback(true);
+			}
+		}else{
+			WMID.send('get_contacts','',function(r){
+				EWMID.var_contacts = JSON.parse(r.contacts);
+				$('#typeSend option:eq(1)').text('Contact ('+EWMID.var_contacts.length+')');
+				
+				if(callback){
+					callback(true);
+				}
+			});
+			EWMID.var_age_from = localStorage['age_from_c'];
+			EWMID.var_age_to = localStorage['age_to_c'];
+		}
+	},
+	set_blecklist: function(d){
+		var blist = '';
+		if(d.blist){ blist = JSON.parse(d.blist);}
+		EWMID.var_blecklist = blist;
+		if(blist.length>0){
+			$('#blecklist').html('');
+			$.each(blist,function(i,v){
+				$('#blecklist').append('<option value="'+v+'">'+v+'</option>');
+			});
+		}else{
+			$('#blecklist').html('<option>- Пусто -</option>');
+		}
+	},
+	set_online: function(d,callback){
+		console.log('online: ',d);
+		EWMID.var_age_from = 100;
+		EWMID.var_age_to = 0;
+		EWMID.var_online = [];
+		if(!$.cookie('s_online')){
+			var df;
+			if(d.clients){
+				df = d.clients;
+			}else{
+				df = d; 
+			}
+			$.each(df,function(i,v){
+				if(EWMID.var_important_age_from>0&&EWMID.var_important_age_to>0){
+					EWMID.var_age_from = EWMID.var_important_age_from;
+					EWMID.var_age_to = EWMID.var_important_age_to;
+				}else{
+					if((v['age']-0)<EWMID.var_age_from&&(v['age']-0)>0){ EWMID.var_age_from = v['age']-0;}
+					if((v['age']-0)>EWMID.var_age_to&&(v['age']-0)<100){ EWMID.var_age_to = v['age']-0;}
+				}
+				var cou = '';
+				if(v['location']!=null){
+					cou = v['location'].split(',');
+					if(cou.length>1){ cou = cou[1];}else{ cou = cou[0];}
+					cou = $.trim(cou);
+				}
+				EWMID.var_online.push({id:v['id'],id_pub:v['public-id'],name:v['name'],age:v['age'],country:cou,vip:v['is-vip'],photo:(v['photo-uri']?true:false)});
+			});
+			WMID.send('set_online',JSON.stringify(EWMID.var_online));
+			localStorage.setItem('age_from',EWMID.var_age_from);
+			localStorage.setItem('age_to',EWMID.var_age_to);
+			var date = new Date();
+			date.setTime(date.getTime() + (10 * 60 * 1000));
+			$.cookie('s_online','true', { expires: date, path: '/' });
+			if(callback){
+				callback(true);
+			}
+		}else{
+			WMID.send('get_online','',function(r){
+				EWMID.var_online = JSON.parse(r.online);
+				if(callback){
+					callback(true);
+				}
+			});
+			EWMID.var_age_from = localStorage['age_from'];
+			EWMID.var_age_to = localStorage['age_to'];
+		}
+		setTimeout(function(){
+			$('#tx_online').text(EWMID.var_online.length);
+		},500);
+		$('#up_online').removeClass('animate');
+		$('#typeSend option:eq(0)').attr('selected','selected');
+		$('#typeSend option:eq(1)').removeAttr('selected');
+		
+	},
+	set_active: function(d){
+		d = d.split(',');
+		$('#active_day').text(d[2]+'.'+d[1]+'.'+d[0]);
+	},
+	set_age: function(){
+		$('#age_from, #age_to').attr('min',EWMID.var_age_from).attr('max',EWMID.var_age_to);
+		$('#age_from').val(EWMID.var_age_from);
+		$('#age_to').val(EWMID.var_age_to);
+	},
+	set_country: function(){
+		var co = [];
+		var typeSend_sel = $('#typeSend option:selected').index();
+		var list;
+		if(typeSend_sel==0){
+			list = EWMID.var_online;
+		}else if(typeSend_sel==1){
+			list = EWMID.var_contacts;
+		}
+		for(var ss in list){
+			if(list[ss].country){
+				if(co.join().search(list[ss].country) == -1){
+					co.push(list[ss].country);
+				}
+			}
+		}
+		console.log(co);
+		$('#country').html('<option value="0">Все</option>');
+		for(var si in co){
+			$('#country').append('<option value="'+co[si]+'">'+co[si]+'</option>');	
+		}
+	}
+};
+EWMID.init();
+</script>

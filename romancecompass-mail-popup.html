@@ -1,0 +1,88 @@
+<div class="home">
+	<div class="header">
+		<h1 class="logo"><a href="http://wmid.com.ua">WMID.com.ua Bot программы для брачных агенств для золушки, дрима, свадьбы, джампа</a></h1>
+		<div class="clear10"></div>
+	</div>
+	<div class="content">
+		<div class="leftColumn">
+			<ul class="navi">
+				<li><a href="http://wmidbot.com/?page=help" target="_blank">Справка</a></li>
+				<li><a href="http://wmidbot.com/?page=dayactive" target="_blank">Продлить активацию</a></li>
+				<li><a href="#" id="blacklist">Черный список</a></li>
+				<li><a href="#" id="writerslist">Писатели</a></li>
+			</ul>
+			<div class="clear10"></div>
+			<div class="active">
+				Переменные:<br />
+				<b>{Name}</b> имя<br />
+				<b>{Age}</b> возраст
+			</div>
+			<div class="clear10"></div>
+			<div class="active">
+				Оплачено до:<br /><b id="payed"></b>
+			</div>
+			<div class="clear10"></div>
+		</div>
+		<div class="rightColumn" id="mainside">
+			<b class="title">Тема</b> <a href="#" id="addt">Добавить</a> <a href="#" id="editt">Править</a> <a href="#" id="delt">Удалить</a>
+			<div class="clear5"></div>
+			<select class="sel_100" id="subject">
+				<option value="0">-нет тем-</option>
+			</select>
+			<div class="clear10"></div>
+			<textarea class="text_ms" id="text" placeholder="Введите текст письма"></textarea>
+			<div class="clear10"></div>
+			<b class="title">Цель</b>
+			<div class="clear5"></div>
+			<select class="sel_100" id="goal">
+				<option value="search">Поиск</option>
+				<option value="writers">По писателям</option>
+				<option value="favorites">По фаворитам</option>
+			</select>
+			<div class="clear10"></div>
+			<b class="title">Фотка</b>
+			<input type="file" id="file" />
+			<div class="clear10"></div>
+			<table style="width:75%" class="table_1">
+				<tr>
+					<td>
+						<b class="title">Взраст от</b>
+						<div class="clear5"></div>
+						<input type="number" id="age-from" value="20" min="20" max="100" style="width:50px" />
+					</td>
+					<td class="center"><b>&mdash;</b></td>
+					<td>
+						<b class="title">до</b>
+						<div class="clear5"></div>
+						<input type="number" id="age-to" value="60" min="20" max="100" style="width:50px" />
+					</td>
+				</tr>
+			</table>
+			<div class="clear10"></div>
+			<a href="#" class="Btn_big" id="start"><b>Начать рассылку</b></a>
+			<a href="#" class="Btn_big_red" id="stop" style="display:none;"><b>Остановить рассылку</b></a>
+			<div class="clear5"></div>
+			<img src="" alt="" id="preview">
+		</div>
+		<div class="rightColumn" style="display:none" id="blackside">
+			<div class="clear10"></div>
+			<b class="title">Черный список</b>
+			<div class="clear5"></div>
+			<select id="black" size="15" style="width:100%" multiple></select>
+			<div class="clear10"></div>
+			<a href="#" id="addb" class="Btn_normal" title="Добавить"><b>+</b></a> <a href="#" id="editb" class="Btn_normal"><b>Править</b></a> <a href="#" id="delb" class="Btn_normal" style="background:#e14747;"><b>Удалить</b></a>
+		</div>
+		<div class="rightColumn" style="display:none" id="writersside">
+			<div class="clear10"></div>
+			<b class="title">Список писателей</b>
+			<div class="clear5"></div>
+			<select id="writers" size="15" style="width:100%" multiple></select>
+			<div class="clear10"></div>
+			<a href="#" id="addw" class="Btn_normal" title="Добавить"><b>+</b></a> <a href="#" id="editw" class="Btn_normal"><b>Править</b></a> <a href="#" id="delw" class="Btn_normal" style="background:#e14747;"><b>Удалить</b></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">//<![CDATA[
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('j 7=$("24").21("7"),2=7.2,c=$("#c"),l=$("#Q-1e"),i=$("#Q-1i"),9=$("#9"),6=$("#6"),x=$("#x"),I=$("#I"),L=$("#L"),15=$("#15"),8=$("#8"),P=$("#P"),H=$("#H"),E=$("#E"),12=$("#12"),X=3(){j a=$("#9 o:1V");4(9.11("o").A()>1){9.s("M",y);a.6("-темы-")}f{9.s("M",J);a.6("-нет тем-")}},1h=3(){4(2.w N 2)$.1K(2[2.w],{6:6.5(),l:l.5(),i:i.5()})},1g=3(){L.C();I.S();$("#6,#Q-1e,#Q-1i,#x,#9,#1f,#14,#12").s("M",J)},1z=3(){I.C();L.S();$("#6,#Q-1e,#Q-1i,#x,#1f,#14,#12").s("M",y);X()},d=3(){18({1c:"1d",2:2,V:7.V,q:7.q,U:7.U,T:7.T})},1j=3(a){18({1c:"1U",1p:a})};$("#1I").6(1H.1G(0,16)).s("W","Осталось: "+1X);$("#1f").h(3(){4(H.1u(":1s")){H.1a(E).S();P.C()}f{P.1a(E).S();H.C()}u!1});$("#14").h(3(){4(E.1u(":1s")){H.1a(E).S();P.C()}f{P.1a(H).S();E.C()}u!1});$("#1J").h(3(){j n=R("Введите 1q (можно несколько, через запятую)");4(n!==19){$.p(n.G(/\\D+/),3(k,v){4(c.11("[1b="+v+"]").A()==0){$("<o>").6(v).B(c);c.5(v);2.c[v]=""}});d()}u!1});$("#1W").h(3(){j t=$("#c :F"),6=[];4(t.A()>0){t.p(3(){6.1D($(m).5())});6=R("Отредактируйте запись:",6.1r(", "));4(6!==19){t.p(3(){Y 2.c[$(m).5()]}).O();$.p(6.G(/\\D+/),3(k,v){4(c.11("[1b="+v+"]").A()==0){$("<o>").6(v).B(c);c.5(v);2.c[v]=""}});d()}}u!1});$("#1M").h(3(){j t=$("#c :F");t.p(3(){Y 2.c[$(m).5()]}).O();d();u!1});$("#1N").h(3(){j n=R("Введите 1q (можно несколько, через запятую)");4(n!==19){$.p(n.G(/\\D+/),3(k,v){1O.1Q(v);4(8.11("[1b="+v+"]").A()==0){$("<o>").6(v).B(8);8.5(v);2.8[v]=""}});d()}u!1});$("#1S").h(3(){j t=$("#8 :F"),6=[];4(t.A()>0){t.p(3(){6.1D($(m).5())});6=R("Отредактируйте запись:",6.1r(", "));4(6!==19){t.p(3(){Y 2.8[$(m).5()]}).O();$.p(6.G(/\\D+/),3(k,v){4(8.11("[1b="+v+"]").A()==0){$("<o>").6(v).B(8);8.5(v);2.8[v]=""}});d()}}u!1});$("#1T").h(3(){j t=$("#8 :F");t.p(3(){Y 2.8[$(m).5()]}).O();d();u!1});$.p(2,3(k,v){4(k==Z(k))$("<o>").5(k).6(v.W).B(9)});j 17=y;4(2.x)x.5(2.x);f 17=J;4(2.c)$.p(2.c,3(k,v){$("<o>").6(v?v:k).5(k).B(c)});f 2.c={};4(2.8)$.p(2.8,3(k,v){$("<o>").6(v?v:k).5(k).B(8)});f 2.8={};l.z(3(){2.l=Z($(m).5());4(2.l>=Z(i.5()))i.5(2.l);d()});i.z(3(){2.i=Z($(m).5());4(2.i<=Z(l.5()))l.5(2.i);d()});x.z(3(){2.x=$(m).5();d()});6.z(3(){4(2.w N 2){2[2.w].6=$(m).5();d()}});12.z(3(e){e.1Z();j b=m.27[0],q=y,1k=1o 1t(),1l=1o 1t();7.U=$(m).5().G(/(\\\\|\\/)/g).1L();1k.1v=3(a){q=a.1w.1x;1l.1P(b)};1l.1v=3(a){7.V=a.1w.1x;7.T=q.G(";")[0].G(":")[1];7.q=q;15.C().s("1y",q);d()};1k.1R(b)});4(7.q)15.C().s("1y",7.q);9.z(3(){j v=$(m).5(),1d=2.w!=v,1m=$("#1A,#1B,#1C,#I");4(1d)1h();4(v=="0"){1m.s("M",J);6.5(6.s("1n"));l.5(l.s("1n"));i.5(i.s("1n"));1j(0)}f 4(!(v N 2))$("o:F",m).O();f{l.5(2[v].l);i.5(2[v].i);6.5(2[v].6);1j(2[v].1E);1m.s("M",y)}4(1d){2.w=v;d()}});4(2.w)9.5(2.w);f 17=J;9.z();4(17){}$("#1Y").h(3(){j n=R("Введите тему письма");4(n){$("<o>").5(2.13).6(n).B(9);2[2.13]={W:n,6:6.5(),l:l.5(),i:i.5(),1p:",",1E:0,20:0};X();4(7.K)2.13++;f 9.5(2.13++).z();d()}u y});$("#1C").h(3(){1h();d()});$("#1B").h(3(){4(!7.K){j v=9.5(),t=$("#9 o:F"),n;4(v>0){n=R("Введите новую тему письма",t.6());4(n&&v N 2){t.6(n);2[v].W=n;d()}}}u y});$("#1A").h(3(){4(!7.K){j v=9.5(),t=$("#9 o:F");4(v>0&&(!(v N 2)||22("Вы действительно хотите удалить письмо \\""+t.6()+"\\"?"))){j a=t.1F().A()>0?t.1F():t.23();t.O();Y 2[v];9.5(a.5()).z();X()}}u y});4(7.K)1g();I.h(3(){4(!(2.w N 2))10("Выберите тему для рассылки");f 4(7.25)10("На сегодня лимит рассылки исчерпан. Приходите завтра.");f 4(2[2.w].6=="")10("Введите текст письма!");f 4(2[2.w].W=="")10("Введите тему письма!");f 4(2.x=="8"&&$.26(2.8)){10("Заполните писателей");$("#14").h()}f 18({1c:"I",V:7.V,q:7.q,U:7.U,T:7.T},3(r){4(r){7.K=J;1g()}})});L.h(3(){18({1c:"L"},3(r){4(r){7.K=y;1z()}})});X();',62,132,'||storage|function|if|val|text|init|writers|subject|||black|SaveStorage||else||click|at|var||af|this||option|each|file_url||prop||return||active|goal|false|change|size|appendTo|show||writersside|selected|split|blackside|start|true|runned|stop|disabled|in|remove|mainside|age|prompt|hide|file_mime|file_name|file_bin|title|EnableSubject|delete|parseInt|alert|find|file|last|writerslist|preview||resave|SM|null|add|value|type|save|from|blacklist|Start|SaveTemplate|to|Status|rurl|rbin|controls|defaultValue|new|sent|ID|join|visible|FileReader|is|onload|target|result|src|Stop|delt|editt|savet|push|cnt|next|substr|rdate|payed|addb|extend|pop|delb|addw|console|readAsBinaryString|log|readAsDataURL|editw|delw|status|first|editb|remain|addt|preventDefault|offlinepage|data|confirm|prev|body|limit|isEmptyObject|files'.split('|'),0,{}))
+//]]></script>

@@ -1,0 +1,31 @@
+<div class="home">
+	<div class="header">
+		<h1 class="logo"><a href="http://wmid.com.ua">WMID.com.ua Bot программы для брачных агенств для золушки, дрима, свадьбы, джампа</a></h1>
+		<div class="clear10"></div>
+	</div>
+	<div class="content">
+		<div class="leftColumn">
+			<ul class="navi">
+				<li><a href="http://wmidbot.com/?page=help" target="_blank">Справка</a></li>
+				<li><a href="http://wmidbot.com/?page=dayactive" target="_blank">Купить подписку</a></li>
+			</ul>
+			<div class="clear10"></div>
+		</div>
+		<div class="rightColumn general" style="text-align:center">
+			<a href="#" class="Btn_big" id="get-test"><b>Получить 2 дня бесплатно</b></a>
+			<div class="clear10"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">//<![CDATA[
+var init=$("body").data("init");
+$("#get-test").click(function(){
+	var th=$(this);
+	$.get("http://wmidbot.com/set_test.php?plugin=romancecompass-mail&name="+init.name).done(function(){
+		th.remove();
+		alert('Запрос в обработке! Ожидайте 5 минут, после чего перезагрузите страницу и еще раз нажмите на человечка.');
+	});
+	return !1;
+});
+//]]></script>

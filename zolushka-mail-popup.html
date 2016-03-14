@@ -1,0 +1,524 @@
+<div class="home">
+	<div class="header">
+		<h1 class="logo"><a href="http://wmid.com.ua">WMID.com.ua Bot программы для брачных агенств для золушки, дрима, свадьбы, джампа</a></h1>
+		<div class="clear10"></div>
+	</div>
+	<div class="content">
+		<div class="leftColumn">
+			<ul class="navi">
+				<li><a href="http://wmidbot.com/?page=help" target="_blank">Справка</a></li>
+				<li><a href="http://wmidbot.com/?page=dayactive" target="_blank">Продлить активацию</a></li>
+				<li><a href="#" id="blacklist">Черный список</a></li>
+				<li><a href="#" id="writerslist">Писатели</a></li>
+			</ul>
+			<div class="clear10"></div>
+			<div class="active">
+				Переменные:<br />
+				<b>{Name}</b> имя<br />
+				<b>{Login}</b> логин<br />
+				<b>{Age}</b> возраст<br />
+				<b>{Height}</b> рост<br />
+				<b>{Weight}</b> вес
+			</div>
+			<div class="clear10"></div>
+			<div class="active">
+				Оплачено до:<br /><b id="payed"></b>
+			</div>
+			<div class="clear10"></div>
+		</div>
+		<div class="rightColumn" id="mainside">
+			<b class="title">Тема</b> <a href="#" id="addt">Добавить</a> <a href="#" id="editt">Править</a> <a href="#" id="delt">Удалить</a>
+			<div class="clear5"></div>
+			<select class="sel_100" id="subject">
+				<option value="0">-нет тем-</option>
+			</select>
+			<div class="clear10"></div>
+			<textarea class="text_ms" id="text" placeholder="Введите текст письма"></textarea>
+			<div class="clear10"></div>
+			<b class="title">Цель</b>
+			<div class="clear5"></div>
+			<select class="sel_100" id="goal">
+				<option value="online">По списку онлайн</option>
+				<option value="writers">По писателям</option>
+				<option value="matches">По парам</option>
+				<option value="admirers">По поклонникам</option>
+				<option value="favorites">По фаворитам</option>
+				<option value="advanced">По списку офлайн</option>
+			</select>
+			<div class="clear10"></div>
+			<b class="title">Фотки</b>
+			<div class="clear5"></div>
+			<select class="sel_100" id="attach">
+				<option value="0">-без фотографии-</option>
+			</select><br /><a href="http://zolushka.net/email/attachmentminder.aspx" target="_blank">Загрузить / удалить</a>
+			<div class="clear10"></div>
+			<table style="width:75%" class="table_1">
+				<tr>
+					<td>
+						<b class="title">Взраст от</b>
+						<div class="clear5"></div>
+						<input type="number" id="age-from" value="20" min="20" max="100" style="width:50px" />
+					</td>
+					<td class="center"><b>&mdash;</b></td>
+					<td>
+						<b class="title">до</b>
+						<div class="clear5"></div>
+						<input type="number" id="age-to" value="60" min="20" max="100" style="width:50px" />
+					</td>
+				</tr>
+			</table>
+			<div class="clear10"></div>
+			<a href="#" class="Btn_big" id="start"><b>Начать рассылку</b></a>
+			<a href="#" class="Btn_big_red" id="stop" style="display:none;"><b>Остановить рассылку</b></a>
+			<div class="clear5"></div>
+			<img src="" alt="" id="preview">
+		</div>
+		<div class="rightColumn" style="display:none" id="blackside">
+			<div class="clear10"></div>
+			<b class="title">Черный список</b>
+			<div class="clear5"></div>
+			<select id="black" size="15" style="width:100%" multiple></select>
+			<div class="clear10"></div>
+			<a href="#" id="addb" class="Btn_normal" title="Добавить"><b>+</b></a> <a href="#" id="editb" class="Btn_normal"><b>Править</b></a> <a href="#" id="delb" class="Btn_normal" style="background:#e14747;"><b>Удалить</b></a>
+		</div>
+		<div class="rightColumn" style="display:none" id="writersside">
+			<div class="clear10"></div>
+			<b class="title">Список писателей</b>
+			<div class="clear5"></div>
+			<select id="writers" size="15" style="width:100%" multiple></select>
+			<div class="clear10"></div>
+			<a href="#" id="addw" class="Btn_normal" title="Добавить"><b>+</b></a> <a href="#" id="editw" class="Btn_normal"><b>Править</b></a> <a href="#" id="delw" class="Btn_normal" style="background:#e14747;"><b>Удалить</b></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">//<![CDATA[
+var init=$("body").data("init"),
+	storage=init.storage,
+	black=$("#black"),
+	af=$("#age-from"),
+	at=$("#age-to"),
+	subject=$("#subject"),
+	text=$("#text"),
+	goal=$("#goal"),
+	start=$("#start"),
+	stop=$("#stop"),
+	attach=$("#attach"),
+	preview=$("#preview"),
+	writers=$("#writers"),
+	mainside=$("#mainside"),
+	blackside=$("#blackside"),
+	writersside=$("#writersside"),
+	EnableSubject=function()
+	{
+		var no=$("#subject option:first");
+		if(subject.find("option").size()>1)
+		{
+			subject.prop("disabled",false);
+			no.text("-темы-");
+		}
+		else
+		{
+			subject.prop("disabled",true);
+			no.text("-нет тем-");
+		}
+	},
+	SaveTemplate=function()
+	{
+		if(storage.active in storage)
+			$.extend(storage[storage.active],{text:text.val(),af:af.val(),at:at.val()});
+	},
+	Start=function()
+	{
+		stop.show();
+		start.hide();
+		$("#text,#age-from,#age-to,#goal,#subject,#blacklist,#writerslist,#attach").prop("disabled",true);
+	},
+	Stop=function()
+	{
+		start.show();
+		stop.hide();
+		$("#text,#age-from,#age-to,#goal,#blacklist,#writerslist,#attach").prop("disabled",false);
+		EnableSubject();
+	},
+	SaveStorage=function()
+	{
+		SM({type:"save",storage:storage});
+	},
+	Status=function(sent)
+	{
+		SM({type:"status",sent:sent});
+	};
+
+$("#payed").text(rdate.substr(0,16)).prop("title","Осталось: "+remain);
+
+$("#blacklist").click(function(){
+	if(blackside.is(":visible"))
+	{
+		blackside.add(writersside).hide();
+		mainside.show();
+	}
+	else
+	{
+		mainside.add(writersside).hide();
+		blackside.show();
+	}
+	return !1;
+});
+
+$("#writerslist").click(function(){
+	if(writersside.is(":visible"))
+	{
+		blackside.add(writersside).hide();
+		mainside.show();
+	}
+	else
+	{
+		mainside.add(blackside).hide();
+		writersside.show();
+	}
+	return !1;
+});
+
+//Черный список
+$("#addb").click(function(){
+	var n=prompt("Введите ID (можно несколько, через запятую)");
+	if(n!==null)
+	{
+		$.each(n.split(/\D+/),function(k,v){
+			if(black.find("[value="+v+"]").size()==0)
+			{
+				$("<option>").text(v).appendTo(black);
+				black.val(v);
+				storage.black[v]="";
+			}
+		});
+		SaveStorage();
+	}
+	return !1;
+});
+
+$("#editb").click(function(){
+	var t=$("#black :selected"),
+		text=[];
+	if(t.size()>0)
+	{
+		t.each(function(){
+			text.push( $(this).val() );
+		});
+		text=prompt("Отредактируйте запись:",text.join(", "));
+		if(text!==null)
+		{
+			t.each(function(){
+				delete storage.black[ $(this).val() ]; 
+			}).remove();
+			$.each(text.split(/\D+/),function(k,v){
+				if(black.find("[value="+v+"]").size()==0)
+				{
+					$("<option>").text(v).appendTo(black);
+					black.val(v);
+					storage.black[v]="";
+				}
+			});
+			SaveStorage();
+		}
+	}
+	return !1;
+});
+
+$("#delb").click(function(){
+	var t=$("#black :selected");
+	t.each(function(){
+		delete storage.black[ $(this).val() ]; 
+	}).remove();
+	SaveStorage();
+	return !1;
+});
+//[E] Черный список
+
+//Страница писателей
+$("#addw").click(function(){
+	var n=prompt("Введите ID (можно несколько, через запятую)");
+	if(n!==null)
+	{
+		$.each(n.split(/\D+/),function(k,v){
+			console.log(v);
+			if(writers.find("[value="+v+"]").size()==0)
+			{
+				$("<option>").text(v).appendTo(writers);
+				writers.val(v);
+				storage.writers[v]="";
+			}
+		});
+		SaveStorage();
+	}
+	return !1;
+});
+
+$("#editw").click(function(){
+	var t=$("#writers :selected"),
+		text=[];
+	if(t.size()>0)
+	{
+		t.each(function(){
+			text.push( $(this).val() );
+		});
+		text=prompt("Отредактируйте запись:",text.join(", "));
+		if(text!==null)
+		{
+			t.each(function(){
+				delete storage.writers[ $(this).val() ]; 
+			}).remove();
+			$.each(text.split(/\D+/),function(k,v){
+				if(writers.find("[value="+v+"]").size()==0)
+				{
+					$("<option>").text(v).appendTo(writers);
+					writers.val(v);
+					storage.writers[v]="";
+				}
+			});
+			SaveStorage();
+		}
+	}
+	return !1;
+});
+
+$("#delw").click(function(){
+	var t=$("#writers :selected");
+	t.each(function(){
+		delete storage.writers[ $(this).val() ]; 
+	}).remove();
+	SaveStorage();
+	return !1;
+});
+//[E] Страница писателей
+
+//Заполнение инфы из хранилища
+$.each(storage,function(k,v){
+	if(k==parseInt(k))
+		$("<option>").val(k).text(v.title).appendTo(subject);
+});
+
+var resave=false;
+
+if(storage.goal)
+	goal.val(storage.goal);
+else
+	resave=true;
+
+if(storage.black)
+	$.each(storage.black,function(k,v){
+		$("<option>").text(v ? v : k).val(k).appendTo(black);
+	});
+else
+	storage.black={};
+
+if(storage.writers)
+	$.each(storage.writers,function(k,v){
+		$("<option>").text(v ? v : k).val(k).appendTo(writers);
+	});
+else
+	storage.writers={};
+//[E] Заполнение инфы из хранилища
+	
+//События изменения контролов рассылки
+af.change(function(){
+	storage[storage.active].af=parseInt($(this).val());
+	if(storage[storage.active].af>=parseInt(at.val()))
+		at.val(storage.af);
+	SaveStorage();
+});
+
+at.change(function(){
+	storage[storage.active].at=parseInt($(this).val());
+	if(storage[storage.active].at<=parseInt(af.val()))
+		af.val(storage.at);
+	SaveStorage();
+});
+
+goal.change(function(){
+	storage.goal=$(this).val();
+	SaveStorage();
+});
+
+text.change(function(){
+	if(storage.active in storage)
+	{
+		storage[storage.active].text=$(this).val();
+		SaveStorage();
+	}
+});
+//[E] События изменения контролов рассылки
+
+//Фотки
+$.each(init.attach,function(k,v){
+	$("<option>").text(v).appendTo(attach);
+});
+attach.change(function(){
+	var v=$(this).val(),
+		save=storage.attach!=v;
+	if(v==0)
+		preview.hide();
+	else
+		preview.show().prop("src","http://zolushka.net/email/attachmentimagegenerator.aspx?emailattachment="+v).data("src",v);
+	if(save)
+	{
+		storage.attach=v;
+		SaveStorage();
+	}
+});
+
+if(storage.attach)
+	attach.val(storage.attach);
+else
+	resave=true;
+attach.change();
+
+preview.click(function(){
+	window.open("http://zolushka.net/email/AttachmentViewer.aspx?emailattachment="+$(this).data("src"));
+});
+//[E] Фотки
+
+//Управление переключателем тем
+subject.change(function(){
+	var v=$(this).val(),
+		save=storage.active!=v,
+		controls=$("#delt,#editt,#savet,#start");
+
+	if(save)
+		SaveTemplate();
+
+	if(v=="0")
+	{
+		controls.prop("disabled",true);
+		text.val(text.prop("defaultValue"));
+		af.val(af.prop("defaultValue"));
+		at.val(at.prop("defaultValue"));
+		Status(0);
+	}
+	else if(!(v in storage))
+		$("option:selected",this).remove();
+	else
+	{
+		af.val(storage[v].af);
+		at.val(storage[v].at);
+		text.val(storage[v].text);
+		Status(storage[v].cnt);
+		controls.prop("disabled",false);
+	}
+
+	if(save)
+	{
+		storage.active=v;
+		SaveStorage();
+	}
+});
+
+if(storage.active)
+	subject.val(storage.active);
+else
+	resave=true;
+subject.change();
+
+if(resave)
+{
+	//ToDo! Пересохранение.
+}
+
+$("#addt").click(function(){
+	var n=prompt("Введите тему письма");
+	if(n)
+	{
+		$("<option>").val(storage.last).text(n).appendTo(subject);
+		storage[storage.last]={title:n,text:text.val(),af:af.val(),at:at.val(),sent:",",cnt:0,offlinepage:0};
+
+		EnableSubject();
+		if(init.runned)
+			storage.last++;
+		else
+			subject.val(storage.last++).change();
+		SaveStorage();
+	}
+	return false;
+});
+
+$("#savet").click(function(){
+	SaveTemplate();
+	SaveStorage();
+});
+
+$("#editt").click(function(){
+	if(!init.runned)
+	{
+		var v=subject.val(),
+			t=$("#subject option:selected"),
+			n;
+		if(v>0)
+		{
+			n=prompt("Введите новую тему письма",t.text());
+			if(n && v in storage)
+			{
+				t.text(n);
+				storage[v].title=n;
+				SaveStorage();
+			}
+		}
+	}
+	return false;
+});
+
+$("#delt").click(function(){
+	if(!init.runned)
+	{
+		var v=subject.val(),
+			t=$("#subject option:selected");
+		if(v>0 && (!(v in storage) || confirm("Вы действительно хотите удалить письмо \""+t.text()+"\"?")))
+		{
+			var next=t.next().size()>0 ? t.next() : t.prev();
+			t.remove();
+			delete storage[v];
+			subject.val(next.val()).change();
+			EnableSubject();
+		}
+	}
+	return false;
+});
+
+if(init.runned)
+	Start();
+
+start.click(function(){
+	if(!(storage.active in storage))
+		alert("Выберите тему для рассылки");
+	else if(init.limit)
+		alert("На сегодня лимит рассылки исчерпан. Приходите завтра.");
+	else if(storage[storage.active].text=="")
+		alert("Введите текст письма!");
+	else if(storage[storage.active].title=="")
+		alert("Введите тему письма!");
+	else if(storage.goal=="writers" && $.isEmptyObject(storage.writers))
+	{
+		alert("Заполните писателей");
+		$("#writerslist").click();
+	}
+	else
+		SM({type:"start"},function(r){
+			if(r)
+			{
+				init.runned=true;
+				Start();
+			}
+		});
+});
+
+stop.click(function(){
+	SM({type:"stop"},function(r){
+		if(r)
+		{
+			init.runned=false;
+			Stop();
+		}
+	});
+});
+EnableSubject();
+//]]></script>

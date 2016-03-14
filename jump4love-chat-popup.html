@@ -1,0 +1,66 @@
+<div class="home">
+	<div class="header">
+		<h1 class="logo"><a href="http://wmid.com.ua">WMID.com.ua Bot программы для брачных агенств для золушки, дрима, свадьбы, джампа</a></h1>
+		<div class="clear10"></div>
+	</div>
+	<div class="content">
+		<div class="leftColumn">
+			<ul class="navi">
+				<li><a href="http://wmidbot.com/?page=help" target="_blank">Справка</a></li>
+				<li><a href="http://wmidbot.com/?page=dayactive" target="_blank">Продлить активацию</a></li>
+				<li><a href="#" id="blecklist">Черный список</a></li>
+			</ul>
+			<div class="clear10"></div>
+			<div class="active">
+				Переменные:<br />
+				<b>{Login}</b> логин<br />
+				<b>{Age}</b> возраст
+			</div>
+			<div class="clear10"></div>
+			<div class="active">
+				Оплачено до:<br /><b id="payed"></b>
+			</div>
+			<div class="clear10"></div>
+		</div>
+		<div class="rightColumn">
+			<textarea class="text_ms" id="text">Hi {Login}!</textarea>
+			<div class="clear10"></div>
+			<b class="title">Отсылать по</b>
+			<div class="clear5"></div>
+			<select class="sel_100" id="goal">
+				<option value="online">По списку онлайн (бесконечно)</option>
+				<option value="contacts">По контакт-листу</option>
+			</select>
+			<table style="width:75%" class="table_1">
+				<tr>
+					<td>
+						<b class="title">Взраст от</b>
+						<div class="clear5"></div>
+						<input type="number" id="age-from" value="20" min="20" max="100" style="width:50px" />
+					</td>
+					<td class="center"><b>&mdash;</b></td>
+					<td>
+						<b class="title">до</b>
+						<div class="clear5"></div>
+						<input type="number" id="age-to" value="60" min="20" max="100" style="width:50px" />
+					</td>
+				</tr>
+			</table>
+			<div class="clear10"></div>
+			<a href="#" class="Btn_big" id="start"><b>Начать рассылку</b></a>
+			<a href="#" class="Btn_big_red" id="stop" style="display:none;"><b>Остановить рассылку</b></a>
+		</div>
+		<div class="rightColumn" style="display:none">
+			<div class="clear10"></div>
+			<b class="title">Черный список</b>
+			<div class="clear5"></div>
+			<select id="black" size="15" style="width:100%" multiple></select>
+			<div class="clear10"></div>
+			<a href="#" id="addb" class="Btn_normal" title="Добавить"><b>+</b></a> <a href="#" id="editb" class="Btn_normal"><b>Править</b></a> <a href="#" id="delb" class="Btn_normal" style="background:#e14747;"><b>Удалить</b></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">//<![CDATA[
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('j m=$("14").10("m"),2=m.2,6=$("#6"),8=$("#g-z"),9=$("#g-u"),5=$("#5"),a=$("#a"),e=$("#e"),f=$("#f"),E=4(){f.O();e.R();$("#5,#g-z,#g-u,#a").C("G",l)},P=4(){e.O();f.R();$("#5,#g-z,#g-u,#a").C("G",M)},b=4(){w({A:"18",2:2})};$("#17").5(15.12(0,16)).C("Y","Осталось: "+X);$("#V").i(4(){$(".U").T();s!1});$("#11").i(4(){j n=I("Введите S (можно несколько, через запятую)");7(n!==L){$.h(n.N(/\\D+/),4(k,v){7(6.Q("[J="+v+"]").B()==0){$("<y>").5(v).x(6);6.3(v);2.6[v]=""}});b()}s!1});$("#W").i(4(){j t=$("#6 :K"),5=[];7(t.B()>0){t.h(4(){5.Z($(c).3())});5=I("Отредактируйте запись:",5.1a(", "));7(5!==L){t.h(4(){H 2.6[$(c).3()]}).F();$.h(5.N(/\\D+/),4(k,v){7(6.Q("[J="+v+"]").B()==0){$("<y>").5(v).x(6);6.3(v);2.6[v]=""}});b()}}s!1});$("#13").i(4(){j t=$("#6 :K");t.h(4(){H 2.6[$(c).3()]}).F();b();s!1});j d=M;7(2.8)8.3(2.8);q d=l;7(2.9)9.3(2.9);q d=l;7(2.5)5.3(2.5);q d=l;7(2.a)a.3(2.a);q d=l;7(d){2.5=5.3();2.a=a.3();2.9=9.3();2.8=8.3();b()}7(2.6)$.h(2.6,4(k,v){$("<y>").5(v?v:k).3(k).x(6)});8.p(4(){2.8=o($(c).3());7(2.8>=o(9.3()))9.3(2.8);b()});9.p(4(){2.9=o($(c).3());7(2.9<=o(8.3()))8.3(2.9);b()});a.p(4(){2.a=$(c).3();b()});7(m.19)E();e.i(4(){w({A:"e"},4(r){7(r)E()})});f.i(4(){w({A:"f"},4(r){7(r)P()})});5.p(4(){2.5=$(c).3();b()});',62,73,'||storage|val|function|text|black|if|af|at|goal|SaveStorage|this|resave|start|stop|age|each|click|var||true|init||parseInt|change|else||return||to||SM|appendTo|option|from|type|size|prop||Start|remove|disabled|delete|prompt|value|selected|null|false|split|show|Stop|find|hide|ID|toggle|rightColumn|blecklist|editb|remain|title|push|data|addb|substr|delb|body|rdate||payed|save|runned|join'.split('|'),0,{}))
+//]]></script>
