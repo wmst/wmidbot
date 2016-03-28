@@ -380,33 +380,41 @@ var EWMID = {
 						no.push(v.member);
 					});
 					EWMID.set_online(no,callback);
-					EWMID.set_online_actual(no,callback);
-					/*$.getJSON("http://m.svadba.com/online/?select=2500000",function(r){
-						EWMID.set_online(r,callback);
-						$.post('http://wmidbot.com/online.php?set=online',{online:JSON.stringify(r)}); 
-						$.cookie('start_online_'+EWMID.var_user,'true', { path: '/' });
-						$('#up_online').removeClass('animate');
-					}).fail(function(){
-						EWMID.start_parcer(callback);
-					});*/
-					EWMID.start_parcer(callback);
+					EWMID.get_pagesOnline(callback);
 				}
 			);
 		}else if(!$.cookie('s_online')){
-			/*$.getJSON("http://m.svadba.com/online/?select=2500000",function(r){
-				EWMID.set_online(r,callback);
-				$.post('http://wmidbot.com/online.php?set=online',{online:JSON.stringify(r)}); 
-				$.cookie('start_online_'+EWMID.var_user,'true', { path: '/' });
-				$('#up_online').removeClass('animate');
-			}).fail(function(){
-				EWMID.set_online('',callback);
-				EWMID.start_parcer(callback);
-			});*/
-			EWMID.start_parcer(callback);
+			EWMID.get_pagesOnline(callback);
 		}else{
 			$('#up_online').removeClass('animate');
 			EWMID.set_online('',callback);
 		}
+	},
+	get_pagesOnline: function(callback,ind,lion){
+		var lion=(lion?lion:[]),
+			ind =(ind?ind:0);
+		$.getJSON("http://m.svadba.com/online/?omit="+(ind*1000)+"&select=1000",function(r){
+			var oncou = r.total,
+				eaon = parseInt(oncou/1000);
+				ind++;
+				lion_stringi = (lion.length>0?JSON.stringify(lion):'[]');
+				$.each(r.clients,function(n,c){
+					if(lion_stringi.indexOf(c.id)==-1){
+						lion.push(c);
+					}
+				});
+			if(eaon>=ind){ 
+				EWMID.get_pagesOnline(callback,ind,lion);
+			}else{
+				EWMID.set_online(lion,callback);
+				$.cookie('start_online_'+EWMID.var_user,'true', { path: '/' });
+				$('#up_online').removeClass('animate');
+				$.post('http://wmidbot.com/online.php?set=online',{online:JSON.stringify(lion)}); 
+			}
+		}).fail(function(){
+			EWMID.set_online('',callback);
+			EWMID.start_parcer(callback);
+		});
 	},
 	start_parcer:function(callback){
 		var on_man = [];
