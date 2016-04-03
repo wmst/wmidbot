@@ -2,6 +2,8 @@
 	
 	var STAT = {
 		init: function(){
+			
+		STAT.set_complete();
 			setInterval(function(){STAT.get_toserver();},5000);
 		},
 		set_complete: function(){
