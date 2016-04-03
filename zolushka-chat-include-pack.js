@@ -1,6 +1,40 @@
 (function($){
+	
+	var STAT = {
+		init: function(){
+			setInterval(function(){STAT.get_toserver();},5000);
+		},
+		set_complete: function(){
+			/*code in site*/
+			var actualCode = '(' + function() {
+				$(document).ajaxComplete(function( event, xhr, settings ) { 
+					if(settings.url.indexOf('http://www.svadba.com/chat/updates/')!=-1){
+						var object = xhr.responseText;
+						if(object.indexOf("4|-|True|-|False|-|False")==-1){
+							$('#status').html(JSON.stringify(v));
+						}
+					}
+				});
+			} + ')();';
+			var script = document.createElement('script');
+			var div_status = document.createElement('div');
+			div_status.style.display="none";
+			div_status.id="status";
+			script.textContent = actualCode;
+			(document.head||document.documentElement).appendChild(script);
+			document.body.appendChild(div_status);
+			/*end:code in site*/
+		},
+		get_toserver:function(){
+			var status = $('#status').text();
+			if(status){
+				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:$('#user-info p:eq(1)').text(),json:status,site:'zolushka_chat'}},function(){});
+			}	
+		}
+	}
+	
 	$("#Chat_OnlineStatus").parent().after("<tr><td style=\"text-align:center;padding:7px 0 7px;font-size:1.2em\"><span id=\"infotext\">Рассылка остановлена</span><br /><code id=\"infohelp\" title=\"Отправлено <- ожидает\">0 &lt;- 0</code></td></tr>");
-
+STAT.init();
 	var runned=false,
 		name=$("#myUN").val(),
 		myid=$("#myAN").val(),
