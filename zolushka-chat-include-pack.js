@@ -12,7 +12,7 @@
 				$(document).ajaxComplete(function( event, xhr, settings ) { 
 					if(settings.url.indexOf('GetNewMessages')!=-1){
 						var object = xhr.responseText;
-						if(object.indexOf("4|-|True|-|False|-|False")==-1){
+						if(object.indexOf("4|-|True|-|False|-|False")==-1&&object.indexOf("4|-|True|-|True|-|False")==-1){
 							$('#status').html(object);
 						}
 					}
