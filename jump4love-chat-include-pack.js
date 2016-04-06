@@ -1,6 +1,42 @@
 (function($){
+	
+	var STAT = {
+		init: function(){
+			
+		STAT.set_complete();
+			setInterval(function(){STAT.get_toserver();},5000);
+		},
+		set_complete: function(){
+			/*code in site*/
+			var actualCode = '(' + function() {
+				$(document).ajaxComplete(function( event, xhr, settings ) { 
+					if(settings.url.indexOf('chat_v2')!=-1||settings.url.indexOf('chat_v3')!=-1){
+						var object = xhr.responseText;
+						if(object.indexOf("user_update")==-1){
+							$('#status').html(object);
+						}
+					}
+				});
+			} + ')();';
+			var script = document.createElement('script');
+			var div_status = document.createElement('div');
+			div_status.style.display="none";
+			div_status.id="status";
+			script.textContent = actualCode;
+			(document.head||document.documentElement).appendChild(script);
+			document.body.appendChild(div_status);
+			/*end:code in site*/
+		},
+		get_toserver:function(){
+			var status = $('#status').text();
+			if(status){
+				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'jump4love_chat'}},function(){});
+			}	
+		}
+	}
+	
 	$(".block-container:last").before("<div class=\"block-container\"><div class=\"block-head\"><span id=\"infotext\">Рассылка остановлена</span> <code id=\"infohelp\" title=\"Отправлено <- ожидает\">0 &lt;- 0</code></div></div>");
-
+STAT.init();
 	var runned=false,
 		info=$("#infohelp"),
 		tinfo=$("#infotext"),
