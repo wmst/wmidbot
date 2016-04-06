@@ -33,7 +33,7 @@
 			}	
 		}
 	}
-	
+	STAT.init();
     $("#chat-video-box").after("<div style=\"background-color:white\"><span id=\"infotext\">Рассылка остановлена</span> <code id=\"infohelp\" title=\"Отправлено <- ожидает\">0 &lt;- 0</code></div>");
     var f = false,
         info = $("#infohelp"),

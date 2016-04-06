@@ -34,9 +34,9 @@
 			}	
 		}
 	}
-	
+	STAT.init();
 	$(".block-container:last").before("<div class=\"block-container\"><div class=\"block-head\"><span id=\"infotext\">Рассылка остановлена</span> <code id=\"infohelp\" title=\"Отправлено <- ожидает\">0 &lt;- 0</code></div></div>");
-STAT.init();
+
 	var runned=false,
 		info=$("#infohelp"),
 		tinfo=$("#infotext"),
