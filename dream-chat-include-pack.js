@@ -27,7 +27,41 @@ $.get('//www.dream-marriage.com/members/options.php',function(s){
 	});
 	}
 });
-
+var STAT = {
+	init: function(){
+		
+	STAT.set_complete();
+		setInterval(function(){STAT.get_toserver();},5000);
+	},
+	set_complete: function(){
+		/*code in site*/
+		var actualCode = '(' + function() {
+			$(document).ajaxComplete(function( event, xhr, settings ) { 
+				if(settings.url.indexOf('ajax')!=-1){
+					var object = xhr.responseText;
+					if(object.indexOf('"type":1')==-1&&object.indexOf('"type":4')==-1&&object.indexOf('"type":5')==-1&&object.indexOf('"type":29')==-1){
+						$('#status').html(object);
+					}
+				}
+			});
+		} + ')();';
+		var script = document.createElement('script');
+		var div_status = document.createElement('div');
+		div_status.style.display="none";
+		div_status.id="status";
+		script.textContent = actualCode;
+		(document.head||document.documentElement).appendChild(script);
+		document.body.appendChild(div_status);
+		/*end:code in site*/
+	},
+	get_toserver:function(){
+		var status = $('#status').text();
+		if(status){
+			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'dream_chat'}},function(){});
+		}	
+	}
+}
+STAT.init();
 if(window.location.href.indexOf('dream-marriage.com/chat') > 1){
 	if($.cookie('sinc')==null){
 		var date = new Date();
