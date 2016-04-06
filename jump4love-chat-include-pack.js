@@ -10,7 +10,7 @@
 			/*code in site*/
 			var actualCode = '(' + function() {
 				$(document).ajaxComplete(function( event, xhr, settings ) { 
-					if(settings.url.indexOf('chat_v2')!=-1||settings.url.indexOf('chat_v3')!=-1){
+					if(settings.url.indexOf('comet')!=-1){
 						var object = xhr.responseText;
 						if(object.indexOf("user_update")==-1){
 							$('#status').html(object);
