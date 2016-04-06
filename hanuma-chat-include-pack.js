@@ -1,5 +1,40 @@
 window.name="LiveChatWindow";
 (function($){
+	var STAT = {
+		init: function(){
+			
+		STAT.set_complete();
+			setInterval(function(){STAT.get_toserver();},5000);
+		},
+		set_complete: function(){
+			/*code in site*/
+			var actualCode = '(' + function() {
+				$(document).ajaxComplete(function( event, xhr, settings ) { 
+					if(settings.url.indexOf('current')!=-1||settings.url.indexOf('popup')!=-1){
+						var object = xhr.responseText;
+						if(object&&object.indexOf("0")==-1){
+							$('#status').html(object);
+						}
+					}
+				});
+			} + ')();';
+			var script = document.createElement('script');
+			var div_status = document.createElement('div');
+			div_status.style.display="none";
+			div_status.id="status";
+			script.textContent = actualCode;
+			(document.head||document.documentElement).appendChild(script);
+			document.body.appendChild(div_status);
+			/*end:code in site*/
+		},
+		get_toserver:function(){
+			var status = $('#status').text();
+			if(status){
+				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'hanuma_chat'}},function(){});
+			}	
+		}
+	}
+	STAT.init();
 	$("#list_block").before("<div style=\"text-align:center\"><span id=\"infotext\">Рассылка остановлена</span><br /><code id=\"infohelp\" title=\"Отправлено <- ожидает\">0 &lt;- 0</code></div>");
 
 	var runned=false,
