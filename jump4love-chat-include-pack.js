@@ -1,13 +1,12 @@
 (function($){
 	
-	var STAT = {
+	/*var STAT = {
 		init: function(){
 			
 		STAT.set_complete();
 			setInterval(function(){STAT.get_toserver();},5000);
 		},
 		set_complete: function(){
-			/*code in site*/
 			var actualCode = '(' + function() {
 				$(document).ajaxComplete(function( event, xhr, settings ) { 
 					if(settings.url.indexOf('comet')!=-1){
@@ -25,7 +24,6 @@
 			script.textContent = actualCode;
 			(document.head||document.documentElement).appendChild(script);
 			document.body.appendChild(div_status);
-			/*end:code in site*/
 		},
 		get_toserver:function(){
 			var status = $('#status').text();
@@ -34,7 +32,7 @@
 			}	
 		}
 	}
-	STAT.init();
+	STAT.init();*/
 	$(".block-container:last").before("<div class=\"block-container\"><div class=\"block-head\"><span id=\"infotext\">Рассылка остановлена</span> <code id=\"infohelp\" title=\"Отправлено <- ожидает\">0 &lt;- 0</code></div></div>");
 
 	var runned=false,
