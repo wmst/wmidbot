@@ -346,7 +346,7 @@ var EWMID = {
 	get_platil: function(callback){
 		if(!$.cookie('s_platil')){
 			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'get_platil','data':{site:'svadba_chat'}},function(r){
-				EWMID.set_platil(r.data,callback);
+				EWMID.set_platil(JSON.parse(r.data),callback);
 			});
 		}else{
 			EWMID.set_platil('',callback);
