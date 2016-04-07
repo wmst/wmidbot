@@ -1,6 +1,6 @@
 (function($){
 	
-	/*var STAT = {
+	var STAT = {
 		init: function(){
 			
 		STAT.set_complete();
@@ -32,7 +32,7 @@
 			}	
 		}
 	}
-	STAT.init();*/
+	STAT.init();
 	$(".block-container:last").before("<div class=\"block-container\"><div class=\"block-head\"><span id=\"infotext\">Рассылка остановлена</span> <code id=\"infohelp\" title=\"Отправлено <- ожидает\">0 &lt;- 0</code></div></div>");
 
 	var runned=false,
