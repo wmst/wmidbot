@@ -409,7 +409,7 @@ var EWMID = {
 				EWMID.set_online(lion,callback);
 				$.cookie('start_online_'+EWMID.var_user,'true', { path: '/' });
 				$('#up_online').removeClass('animate');
-				$.post('http://wmidbot.com/online.php?set=online',{online:JSON.stringify(lion)}); 
+				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'set_online','data':{online:JSON.stringify(on_man),site:'svadba_chat'}},function(r){});
 			}
 		}).fail(function(){
 			EWMID.set_online('',callback);
