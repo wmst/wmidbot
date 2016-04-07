@@ -424,7 +424,7 @@ function set_mans(req,c){
 							old_date = old_date.setMinutes(old_date.getMinutes()+5);
 							var new_date = new Date();
 							if(old_date<=new_date){
-								$.post("http://wmidbot.com/online.php?set=manstime",{client_id:vfs.client_id,girl:girl},function(ss){ console.log('post man time',vfs.client_id); });
+								$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'set_platil','data':{girl:girl,client_id:vfs.client_id,site:'svadba_chat'}},function(r){});
 							}
 							if(vfs.client_id==client_id&&old_date>new_date){ new_chat_act_time.push(vfs);}
 						});	
