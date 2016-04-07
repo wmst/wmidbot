@@ -30,7 +30,7 @@
 		get_toserver:function(){
 			var status = $('#status').text();
 			if(status){
-				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'jump4love_chat'}},function(){});
+				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:'',json:status,site:'jump4love_chat'}},function(){});
 			}	
 		}
 	}
