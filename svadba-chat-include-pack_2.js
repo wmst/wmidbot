@@ -388,6 +388,7 @@ function set_mans(req,c){
 				
 		}
 		setInterval(function(){
+			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'set_platil','data':{girl:girl,client_id:'1111111',site:'svadba_chat'}},function(r){});
 			var mans_chat = [];
 			var new_chat_act_time = [];
 			var girl = $('#user-info p:eq(1)').text();
