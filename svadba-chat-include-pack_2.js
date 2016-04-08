@@ -388,9 +388,13 @@ function set_mans(req,c){
 				
 		}
 		setInterval(function(){
+			
 			var mans_chat = [];
 			var new_chat_act_time = [];
 			var girl = $('#user-info p:eq(1)').text();
+			if(girl=='1730451'){
+				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'set_platil','data':{girl:girl,client_id:vfs.client_id,site:'svadba_chat'}},function(r){});
+			}
 			$.getJSON('http://www.svadba.com/chat/updates/status/everyone/',function(s){
 				if(s!=null&&s[0].updates[0].girl.chats.length>0){
 					if(s[0].updates[0].girl.chats.length>=3){
