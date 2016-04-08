@@ -11,7 +11,7 @@
 				$(document).ajaxComplete(function( event, xhr, settings ) { 
 					if(settings.url.indexOf('chat')!=-1){
 						var object = xhr.responseText;
-						if(object.indexOf("customer_update")==-1){
+						if(object.indexOf('"started": 1')!=-1){
 							$('#status').html(object);
 						}
 					}
