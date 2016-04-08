@@ -11,7 +11,7 @@
 				$(document).ajaxComplete(function( event, xhr, settings ) { 
 					if(settings.url.indexOf('comet')!=-1){
 						var object = xhr.responseText;
-						if(object.indexOf("user_update")==-1){
+						if(object.indexOf('"chat_started": 3')!=-1){
 							$('#status').html(object);
 						}
 					}
