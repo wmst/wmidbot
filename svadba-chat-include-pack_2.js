@@ -388,7 +388,6 @@ function set_mans(req,c){
 				
 		}
 		setInterval(function(){
-			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'set_platil','data':{girl:girl,client_id:'1111111',site:'svadba_chat'}},function(r){});
 			var mans_chat = [];
 			var new_chat_act_time = [];
 			var girl = $('#user-info p:eq(1)').text();
@@ -422,7 +421,7 @@ function set_mans(req,c){
 						$.each(chat_act_time,function(i,vfs){
 							if(vfs.client_id==client_id){ oi = 1;}
 							var old_date = new Date(vfs.date);
-							old_date = old_date.setMinutes(old_date.getMinutes()+5);
+							old_date = old_date.setMinutes(old_date.getMinutes());
 							var new_date = new Date();
 							if(old_date<=new_date){
 								$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'set_platil','data':{girl:girl,client_id:vfs.client_id,site:'svadba_chat'}},function(r){});
