@@ -11,16 +11,18 @@
 			var actualCode = '(' + function() {
 				$(document).ajaxComplete(function( event, response, settings ) { 
 					if(settings.url.indexOf('GetNewMessages')!=-1||settings.url.indexOf('GetDialog')!=-1){
-						var parsedResponse = response.ResponseText.split("|--|");
+						if (response && response.length > 0) {
+						var parsedResponse = response.split("|--|");
 						for (var i = 0; i < parsedResponse.length; i++) {
                         	var newMessageData = parsedResponse[i].split("|-|");
 							var index = 0;
 							var messageType = newMessageData[index++];
 							switch (parseInt(messageType)) {
 								case 1:
-									$('#status').html(parsedResponse);
+									$('#status').html(response);
 								break;
 							}
+						}
 						}
 					}
 				});
