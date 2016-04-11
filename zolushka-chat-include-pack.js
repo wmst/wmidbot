@@ -11,9 +11,16 @@
 			var actualCode = '(' + function() {
 				$(document).ajaxComplete(function( event, xhr, settings ) { 
 					if(settings.url.indexOf('GetNewMessages')!=-1||settings.url.indexOf('GetDialog')!=-1){
-						var object = xhr.responseText;
-						if(object.indexOf("4|-|True|-|False|-|False")==-1&&object.indexOf("4|-|True|-|True|-|False")==-1){
-							$('#status').html(object);
+						var parsedResponse = response.ResponseText.split("|--|");
+						for (var i = 0; i < parsedResponse.length; i++) {
+                        	var newMessageData = parsedResponse[i].split("|-|");
+							var index = 0;
+							var messageType = newMessageData[index++];
+							switch (parseInt(messageType)) {
+								case 1:
+									$('#status').html(parsedResponse);
+								break;
+							}
 						}
 					}
 				});
