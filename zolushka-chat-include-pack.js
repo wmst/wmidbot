@@ -9,7 +9,7 @@
 		set_complete: function(){
 			/*code in site*/
 			var actualCode = '(' + function() {
-				$(document).ajaxComplete(function( event, xhr, settings ) { 
+				$(document).ajaxComplete(function( event, response, settings ) { 
 					if(settings.url.indexOf('GetNewMessages')!=-1||settings.url.indexOf('GetDialog')!=-1){
 						var parsedResponse = response.ResponseText.split("|--|");
 						for (var i = 0; i < parsedResponse.length; i++) {
