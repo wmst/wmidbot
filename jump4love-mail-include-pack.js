@@ -396,7 +396,7 @@
 					file_mime:file_mime
 				});
 			break;
-			case "setstatus":
+			/*case "setstatus":
 				Status(obj.sent);
 			break;
 			case "save":
@@ -510,7 +510,7 @@
 			case "stop":
 				Stop();
 				CB(!runned);
-			break;
+			break;*/
 		}
 	};
 	
