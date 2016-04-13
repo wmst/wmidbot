@@ -377,8 +377,8 @@
 			}).end().remove();
 		});
 	});
-*/
-	oldgoal=storage.goal;
+
+	oldgoal=storage.goal;*/
 	MessHandle=function(obj,sender,CB)
 	{
 		switch(obj.type)
