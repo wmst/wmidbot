@@ -377,7 +377,7 @@
 			}).end().remove();
 		});
 	});
-
+*/
 	oldgoal=storage.goal;
 	MessHandle=function(obj,sender,CB)
 	{
@@ -513,5 +513,5 @@
 			break;
 		}
 	};
-	*/
+	
 })(jQuery);
