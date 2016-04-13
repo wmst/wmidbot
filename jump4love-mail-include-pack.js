@@ -1,5 +1,5 @@
 (function($){
-	$("#content .title-ns:first").prepend( $("<div>").css({"font-size":"2em"}).width("500px").html("<span id=\"infostatus\">Рассылка</span>: <code id=\"infohelp\" title=\"Отправлено <- ожидает\">неизвестно</code>") );
+	/*$("#content .title-ns:first").prepend( $("<div>").css({"font-size":"2em"}).width("500px").html("<span id=\"infostatus\">Рассылка</span>: <code id=\"infohelp\" title=\"Отправлено <- ожидает\">неизвестно</code>") );
 
 	var runned=false,
 		limit=false,
@@ -221,7 +221,7 @@
 							dataType:"json",
 							success:function(pr)
 							{
-								if(pr.result=="show_captcha"/* && pr.msg.indexOf("The characters you entered")!=-1*/)
+								if(pr.result=="show_captcha")
 								{
 									captcha=true;
 									SendCaptcha(mess);
@@ -341,22 +341,7 @@
 
 	ReStartSender=function()
 	{
-		/*$.post('http://wmidbot.com/ajax.php',{'module':'billing','event':'jump_c','data':{name:name}},function(r){
-			console.log(r);
-			if(r.error=="LIMIT_EXCEED")
-			{
-				runned = false;
-				alert("На сегодня достингнут лимит в "+e.limit+" писем ");
-				//run.click();
-			}
-			else if(r.error=="PAYED_EXCEED")
-			{
-				runned = false;
-				alert("Вы исчерпали письма. Пожалуйста, пополните свой счет на \nhttp://wmidbot.com");
-				//run.click();
-			}
-			
-		});*/
+		
 		if(runned)
 			tos=setTimeout(StartSender,iws);
 	};
@@ -528,5 +513,5 @@
 			break;
 		}
 	};
-	
+	*/
 })(jQuery);
