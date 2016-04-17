@@ -1,4 +1,103 @@
-
+var STAT = {
+	var_storage_countid:null,
+	var_storage_id:null,
+	var_intst:null,
+	var_count_send:{from:0,to:0},
+	init: function(){
+		STAT.set_complete();
+		setInterval(function(){STAT.get_toserver();},5000);
+	},
+	set_complete: function(){
+		/*code in site*/
+		var actualCode = '(' + function() {
+			$(document).ajaxComplete(function( event, xhr, settings ) { 
+				if(settings.url.indexOf('http://www.svadba.com/chat/updates/')!=-1){
+					var object = JSON.parse(xhr.responseText);
+					if(object!=null){
+						$.each(object,function(i,v){
+							if(v!=null){
+								switch(v.type){
+									case 'attentions':
+										$('#attentions').html(JSON.stringify(v));
+									break;
+									case 'status':
+										$('#status').html(JSON.stringify(v));
+									break;
+									case 'unreads':
+										$('#unreads').html(JSON.stringify(v));
+									break;
+									case 'messages':
+										console.log('messages',JSON.stringify(v));
+									break;
+									default:
+										//$('#attentions,#status,#unreads').html('');
+									break;
+								}
+							}
+						});
+					}
+				}
+				if(settings.url.indexOf('http://www.svadba.com/chat/send-message/')!=-1){
+					if(settings.url.indexOf('?chat=true')==-1){
+						var id_man = settings.url.split('http://www.svadba.com/chat/send-message/').join('');
+						var lsh = $('#smiles').text();
+						lsh = (lsh?JSON.parse(lsh):[]);
+						if(lsh.join().search(id_man)){
+							lsh.push(id_man);
+						}
+						$('#smiles').html(JSON.stringify(lsh));
+						id_man = null;
+					}
+				}
+			});
+		} + ')();';
+		var script = document.createElement('script');
+		var div_attentions = document.createElement('div');
+		div_attentions.style.display="none";
+		div_attentions.id="attentions";
+		var div_status = document.createElement('div');
+		div_status.style.display="none";
+		div_status.id="status";
+		var div_unreads = document.createElement('div');
+		div_unreads.style.display="none";
+		div_unreads.id="unreads";
+		var div_smiles = document.createElement('div');
+		div_smiles.style.display="none";
+		div_smiles.id="smiles";
+		script.textContent = actualCode;
+		(document.head||document.documentElement).appendChild(script);
+		document.body.appendChild(div_attentions);
+		document.body.appendChild(div_status);
+		document.body.appendChild(div_unreads);
+		document.body.appendChild(div_smiles);
+		/*end:code in site*/
+	},
+	get_toserver:function(){
+		var attentions = $('#attentions').text();
+		var status = $('#status').text();
+		var unreads = $('#unreads').text();
+		if(attentions){
+			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_attentions','data':{girl:$('#user-info p:eq(1)').text(),json:attentions,site:'svadba_chat'}},function(){});
+			$('#attentions,#status,#unreads').html('');
+		}
+		if(status&&status.indexOf('"chats":[]')==-1){
+			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:$('#user-info p:eq(1)').text(),json:status,site:'svadba_chat'}},function(){});
+			STAT.is_chats(status);
+			$('#attentions,#status,#unreads').html('');
+		}		
+		if(unreads){
+			console.log(unreads);
+			console.log('unread_sms');
+			$('#attentions,#status,#unreads').html('');
+		}
+	},
+	is_chats: function(status){
+		if(status){
+		console.log('is_chat');
+		}
+	}
+};
+STAT.init();
 var SWMID = {
 	obj_sort_list: {
 		online:null,
