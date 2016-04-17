@@ -29,8 +29,7 @@ $.get('//www.dream-marriage.com/members/options.php',function(s){
 });
 var STAT = {
 	init: function(){
-		
-	STAT.set_complete();
+		STAT.set_complete();
 		setInterval(function(){STAT.get_toserver();},5000);
 	},
 	set_complete: function(){
