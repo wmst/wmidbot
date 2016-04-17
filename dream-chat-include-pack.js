@@ -28,6 +28,7 @@ $.get('//www.dream-marriage.com/members/options.php',function(s){
 	}
 });
 var STAT = {
+	var_site:'dream_chat',
 	init: function(){
 		STAT.set_isonline();
 		STAT.set_complete();

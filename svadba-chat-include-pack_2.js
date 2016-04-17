@@ -1,11 +1,17 @@
 var STAT = {
+	var_site:'svadba_chat',
 	var_storage_countid:null,
 	var_storage_id:null,
 	var_intst:null,
 	var_count_send:{from:0,to:0},
 	init: function(){
-		STAT.set_complete();
-		setInterval(function(){STAT.get_toserver();},5000);
+		STAT.set_isonline();
+			STAT.set_complete();
+			setInterval(function(){STAT.get_toserver();},5000);
+			setInterval(function(){STAT.set_isonline();},60000);
+	},
+	set_isonline: function(){
+		$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 	},
 	set_complete: function(){
 		/*code in site*/
