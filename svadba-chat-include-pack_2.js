@@ -525,6 +525,7 @@ function set_mans(req,c){
 							var new_date = new Date();
 							if(old_date<=new_date){
 								$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'set_platil','data':{girl:girl,client_id:vfs.client_id,site:'svadba_chat'}},function(r){});
+								$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:girl,json:status,site:'svadba_chat'}},function(){});
 							}
 							if(vfs.client_id==client_id&&old_date>new_date){ new_chat_act_time.push(vfs);}
 						});	
