@@ -37,12 +37,12 @@ var STAT = {
 		/*code in site*/
 		var actualCode = '(' + function() {
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
-				if(settings.url.indexOf('ajax')!=-1){
+				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
 					if(object.indexOf('"type":6')!=-1&&object.indexOf('"type":13')!=-1&&object.indexOf('"type":22')!=-1){
 						$('#status').html(object);
 					}
-				}
+				//}
 			});
 		} + ')();';
 		var script = document.createElement('script');
