@@ -128,7 +128,7 @@ var SWMID = {
 	var_and_or_vp:0,
 	var_type_send:0,
 	var_country:0,
-	var_transkey: 'trnsl.1.1.20140925T082047Z.5055d7e52197b592.bda3ad29dbb6a6aa6d19098d6e9748aca550221e',
+	var_transkey: 'trnsl.1.1.20160417T113621Z.80240180c97dcbb5.7a2a1d049a9a30718ed565e30aeaaa2737be8b62',
 	init: function(){
 		SWMID.build_interface();
 		SWMID.events();
