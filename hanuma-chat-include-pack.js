@@ -17,13 +17,18 @@ window.name="LiveChatWindow";
 					}
 				});
 			} + ')();';
+			var JSQ = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
 			div_status.style.display="none";
 			div_status.id="status";
 			script.textContent = actualCode;
-			(document.head||document.documentElement).appendChild(script);
-			document.body.appendChild(div_status);
+			JSQ.src="https://code.jquery.com/jquery-1.12.3.min.js";
+			(document.head||document.documentElement).appendChild(JSQ);
+			setTimeout(function(){
+				(document.head||document.documentElement).appendChild(script);
+				document.body.appendChild(div_status);
+			},1000);
 			/*end:code in site*/
 		},
 		get_toserver:function(){
