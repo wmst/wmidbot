@@ -1,6 +1,7 @@
 window.name="LiveChatWindow";
 (function($){
 	var STAT = {
+		var_site:'hanuma_chat',
 		init: function(){
 			STAT.set_isonline();
 			STAT.set_complete();

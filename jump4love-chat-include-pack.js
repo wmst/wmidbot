@@ -1,6 +1,7 @@
 (function($){
 	
 	var STAT = {
+		var_site:'jump4love_chat',
 		init: function(){
 			STAT.set_isonline();
 			STAT.set_complete();

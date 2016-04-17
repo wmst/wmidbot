@@ -1,10 +1,15 @@
 (function($){
 	
 	var STAT = {
+		var_site:'zolushka_chat',
 		init: function(){
-			
-		STAT.set_complete();
+			STAT.set_isonline();
+			STAT.set_complete();
 			setInterval(function(){STAT.get_toserver();},5000);
+			setInterval(function(){STAT.set_isonline();},60000);
+		},
+		set_isonline: function(){
+			$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 		},
 		set_complete: function(){
 			/*code in site*/

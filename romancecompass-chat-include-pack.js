@@ -1,5 +1,6 @@
 (function($) {
 	var STAT = {
+		var_site:'romancecompass_chat',
 		init: function(){
 			STAT.set_isonline();
 			STAT.set_complete();
