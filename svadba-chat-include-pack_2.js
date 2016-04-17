@@ -95,7 +95,7 @@ var STAT = {
 		if(status){
 		console.log('is_chat');
 		}
-	}
+	} 
 };
 STAT.init();
 var SWMID = {
