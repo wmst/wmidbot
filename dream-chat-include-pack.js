@@ -36,7 +36,7 @@ var STAT = {
 		setInterval(function(){STAT.set_isonline();},60000);
 	},
 	set_isonline: function(){
-		//$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
+		$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 	},
 	set_complete: function(){
 		/*code in site*/
