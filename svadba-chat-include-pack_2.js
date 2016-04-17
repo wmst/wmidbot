@@ -80,7 +80,7 @@ var STAT = {
 			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_attentions','data':{girl:$('#user-info p:eq(1)').text(),json:attentions,site:'svadba_chat'}},function(){});
 			$('#attentions,#status,#unreads').html('');
 		}
-		if(status/*&&status.indexOf('"chats":[]')==-1*/){
+		if(status){
 			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:$('#user-info p:eq(1)').text(),json:status,site:'svadba_chat',st:'1'}},function(){});
 			STAT.is_chats(status);
 			$('#attentions,#status,#unreads').html('');
