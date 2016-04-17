@@ -2,19 +2,18 @@
 	
 	var STAT = {
 		init: function(){
-			
-		STAT.set_complete();
+			STAT.set_complete();
 			setInterval(function(){STAT.get_toserver();},5000);
 		},
 		set_complete: function(){
 			var actualCode = '(' + function() {
 				$(document).ajaxComplete(function( event, xhr, settings ) { 
-					if(settings.url.indexOf('comet')!=-1){
+					//if(settings.url.indexOf('chat')!=-1){
 						var object = xhr.responseText;
-						if(object.indexOf('"chat_started": 3')!=-1){
+						if(object.indexOf('chat_started')!=-1){
 							$('#status').html(object);
 						}
-					}
+					//}
 				});
 			} + ')();';
 			var script = document.createElement('script');
