@@ -57,6 +57,7 @@ var STAT = {
 		var status = $('#status').text();
 		if(status){
 			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'dream_chat'}},function(){});
+			$('#status').text('');
 		}	
 	}
 }
