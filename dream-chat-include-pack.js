@@ -39,7 +39,7 @@ var STAT = {
 		$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 	},
 	set_complete: function(){
-		/*code in site*/
+		/*code in site*/ 
 		var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
