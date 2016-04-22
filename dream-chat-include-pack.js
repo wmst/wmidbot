@@ -40,7 +40,7 @@ var STAT = {
 	},
 	set_complete: function(){
 		/*code in site*/
-		var actualCode = '' + 
+		var actualCode = ' ' + 
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
@@ -62,10 +62,8 @@ var STAT = {
 		script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
 		
 		document.head.appendChild(script2);
-		setTimeout(function(){
 		document.body.appendChild(script);
 		document.body.appendChild(div_status);
-		},20000);
 		/*end:code in site*/
 	},
 	get_toserver:function(){
