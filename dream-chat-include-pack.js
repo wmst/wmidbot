@@ -44,6 +44,7 @@ var STAT = {
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
+					console.log(object);
 					//if((object.indexOf('"type":1')==-1&&object.indexOf('"type":9')==-1&&object.indexOf('"type":4')==-1)&&object.indexOf('type')!=-1){
 						$('#status').html(object);
 					//}
@@ -61,7 +62,7 @@ var STAT = {
 	},
 	get_toserver:function(){
 		var status = $('#status').text();
-		console.log(status);
+		//console.log(status);
 		if(status){
 			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'dream_chat'}},function(){});
 			$('#status').text('');
