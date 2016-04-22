@@ -60,9 +60,11 @@ var STAT = {
 		script.type="text/javascript";
 		script2.type="text/javascript";
 		script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
+		setTimeout(function(){
 		document.head.appendChild(script2);
 		document.head.appendChild(script);
 		document.body.appendChild(div_status);
+		},10000);
 		/*end:code in site*/
 	},
 	get_toserver:function(){
