@@ -51,6 +51,7 @@ var STAT = {
 				//}
 			});
 		} + ');';
+		setTimeout(function(){
 		var script = document.createElement('script');
 		var div_status = document.createElement('div');
 		div_status.style.display="none";
@@ -58,6 +59,7 @@ var STAT = {
 		script.textContent = actualCode;
 		(document.head||document.documentElement).appendChild(script);
 		document.body.appendChild(div_status);
+		},10000);
 		/*end:code in site*/
 	},
 	get_toserver:function(){
