@@ -42,13 +42,13 @@ var STAT = {
 		/*code in site*/
 		var actualCode = '' + 
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
-				if(settings.url.indexOf('ajax')!=-1){
+				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
-					console.log(object);
+					console.log(settings.url,object);
 					if((object.indexOf('"type":1')==-1&&object.indexOf('"type":9')==-1&&object.indexOf('"type":4')==-1)&&object.indexOf('"type":')!=-1){
 						$('#status').html(object);
 					}
-				}
+				//}
 			});
 		 + '';
 		var script = document.createElement('script');
