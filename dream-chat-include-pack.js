@@ -44,9 +44,9 @@ var STAT = {
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
-					console.log(xhr);
+					console.log(object);
 					//if((object.indexOf('"type":1')==-1&&object.indexOf('"type":9')==-1&&object.indexOf('"type":4')==-1)&&object.indexOf('type')!=-1){
-						$('#status').html(object);
+						//$('#status').html(object);
 					//}
 				//}
 			});
