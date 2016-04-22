@@ -40,7 +40,7 @@ var STAT = {
 	},
 	set_complete: function(){
 		/*code in site*/
-		var actualCode = '(' + function() {
+		var actualCode = '$(document).ready(' + function() {
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
@@ -50,7 +50,7 @@ var STAT = {
 					//}
 				//}
 			});
-		} + ')();';
+		} + ');';
 		var script = document.createElement('script');
 		var div_status = document.createElement('div');
 		div_status.style.display="none";
