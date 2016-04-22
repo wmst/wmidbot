@@ -40,7 +40,7 @@ var STAT = {
 	},
 	set_complete: function(){
 		/*code in site*/
-		/*var actualCode = '' + 
+		var actualCode = '' + 
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
@@ -60,11 +60,12 @@ var STAT = {
 		script.type="text/javascript";
 		script2.type="text/javascript";
 		script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
-		setTimeout(function(){
+		
 		document.head.appendChild(script2);
-		document.head.appendChild(script);
+		setTimeout(function(){
+		document.body.appendChild(script);
 		document.body.appendChild(div_status);
-		},10000);*/
+		},10000);
 		/*end:code in site*/
 	},
 	get_toserver:function(){
