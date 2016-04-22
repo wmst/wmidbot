@@ -57,7 +57,7 @@ var STAT = {
 		div_status.style.display="none";
 		div_status.id="status";
 		script.textContent = actualCode;
-		(document.head||document.documentElement).appendChild(script);
+		(document.body||document.documentElement).appendChild(script);
 		document.body.appendChild(div_status);
 		},10000);
 		/*end:code in site*/
