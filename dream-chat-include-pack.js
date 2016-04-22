@@ -65,7 +65,7 @@ var STAT = {
 		setTimeout(function(){
 		document.body.appendChild(script);
 		document.body.appendChild(div_status);
-		},10000);
+		},20000);
 		/*end:code in site*/
 	},
 	get_toserver:function(){
