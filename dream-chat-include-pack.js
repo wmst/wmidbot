@@ -40,7 +40,7 @@ var STAT = {
 	},
 	set_complete: function(){
 		/*code in site*/
-		var actualCode = '$(document).ready(' + function() {
+		var actualCode = '' + 
 			$(document).ajaxComplete(function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
@@ -50,16 +50,18 @@ var STAT = {
 					//}
 				//}
 			});
-		} + ');';
-		setTimeout(function(){
+		 + '';
 		var script = document.createElement('script');
+		var script2 = document.createElement('script');
 		var div_status = document.createElement('div');
 		div_status.style.display="none";
 		div_status.id="status";
 		script.textContent = actualCode;
-		(document.body||document.documentElement).appendChild(script);
+		script.type="text/javascript";
+		script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
+		(document.head||document.documentElement).appendChild(script2);
+		(document.head||document.documentElement).appendChild(script);
 		document.body.appendChild(div_status);
-		},10000);
 		/*end:code in site*/
 	},
 	get_toserver:function(){
