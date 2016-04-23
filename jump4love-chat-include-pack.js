@@ -12,16 +12,22 @@
 			$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 		},
 		set_complete: function(){
-			var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
-					//if(settings.url.indexOf('chat')!=-1){
-						var object = xhr.responseText;
-						//console.log(object);
-						if(object.indexOf('chat_started')!=-1){
-							$('#status').html(object);
-						}
-					//}
-			
-			} + ');';
+			var actualCode = 'var df = ' + function(){
+						var idParam = nxCometLoader._makeRequestId();
+						var url = nxCometLoader.JS_WAIT_URI + idParam;
+						url += (url.indexOf('?') > -1 ? '&' : '?') + 't=' + (new Date()).getTime();
+						var xmlhttps = nxCometLoader._getXmlHttp();
+						xmlhttps.open('GET', url, true);
+						xmlhttps.onreadystatechange = function() {
+							var rt = xmlhttps.responseText;
+							console.log(rt);
+							if(rt.indexOf('chat_started')!=-1){
+								$('#status').html(rt);
+							}
+						} 
+						xmlhttps.send();
+
+				+ '} setInterval(df,3000);';
 			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
