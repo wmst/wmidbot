@@ -40,7 +40,7 @@ var STAT = {
 	},
 	set_complete: function(){
 		/*code in site*/ 
-		var actualCode = '$(ChatDOM).ajaxComplete(' + function( event, xhr, settings ) { 
+		var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
 					console.log(settings.url,object);
@@ -60,8 +60,10 @@ var STAT = {
 		script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
 		
 		document.head.appendChild(script2);
+		setTimeout(function(){
 		document.head.appendChild(script);
 		document.body.appendChild(div_status);
+		},10000);
 		/*end:code in site*/
 	},
 	get_toserver:function(){
