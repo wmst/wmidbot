@@ -15,7 +15,7 @@
 			var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 					//if(settings.url.indexOf('chat')!=-1){
 						var object = xhr.responseText;
-						console.log(xmlhttp);
+						console.log(object);
 						if(object.indexOf('chat_started')!=-1){
 							$('#status').html(object);
 						}
@@ -34,9 +34,9 @@
 			
 			document.head.appendChild(script2);
 			setTimeout(function(){
-				document.body.appendChild(script);
+				document.head.appendChild(script);
 				document.body.appendChild(div_status);
-			},10000);
+			},5000);
 		},
 		get_toserver:function(){
 			var status = $('#status').text();
