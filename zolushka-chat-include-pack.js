@@ -2,6 +2,7 @@
 	
 	var STAT = {
 		var_site:'zolushka_chat',
+		arr_active_chats:[],
 		init: function(){
 			STAT.set_isonline();
 			STAT.set_complete();
