@@ -12,16 +12,15 @@
 			$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 		},
 		set_complete: function(){
-			var actualCode = '(' + function() {
-				$(document).ajaxComplete(function( event, xhr, settings ) { 
+			var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 					//if(settings.url.indexOf('chat')!=-1){
 						var object = xhr.responseText;
+						console.log(object);
 						if(object.indexOf('chat_started')!=-1){
 							$('#status').html(object);
 						}
 					//}
-				});
-			} + ')();';
+			} + ');';
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
 			div_status.style.display="none";
