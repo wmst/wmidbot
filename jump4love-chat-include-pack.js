@@ -12,7 +12,8 @@
 			$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 		},
 		set_complete: function(){
-			var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
+			var actualCode = '(' + function() {
+				$(document).ajaxComplete(function( event, xhr, settings ) { 
 					//if(settings.url.indexOf('chat')!=-1){
 						var object = xhr.responseText;
 						console.log(object);
@@ -20,15 +21,18 @@
 							$('#status').html(object);
 						}
 					//}
-			} + ');';
+				});
+			} + ')();';
 			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
 			div_status.style.display="none";
 			div_status.id="status";
 			script.textContent = actualCode;
+			script.type="text/javascript";
 			script2.type="text/javascript";
 			script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
+			
 			document.head.appendChild(script2);
 			setTimeout(function(){
 				document.head.appendChild(script);
