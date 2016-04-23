@@ -27,7 +27,7 @@
 						} 
 						xmlhttps.send();
 
-				+ '} setInterval(df,3000);';
+			}+ '; setInterval(df,3000);';
 			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
