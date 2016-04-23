@@ -15,13 +15,13 @@
 			var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 					//if(settings.url.indexOf('chat')!=-1){
 						var object = xhr.responseText;
-						console.log(object);
+						console.log(xmlhttp);
 						if(object.indexOf('chat_started')!=-1){
 							$('#status').html(object);
 						}
 					//}
 			
-			} + ');';
+			} + '); console.log(xmlhttp);';
 			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
