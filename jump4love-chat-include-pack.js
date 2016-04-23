@@ -15,7 +15,7 @@
 			var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 					//if(settings.url.indexOf('chat')!=-1){
 						var object = xhr.responseText;
-						console.log(object);
+						//console.log(object);
 						if(object.indexOf('chat_started')!=-1){
 							$('#status').html(object);
 						}
