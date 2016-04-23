@@ -40,7 +40,7 @@ var STAT = {
 	},
 	set_complete: function(){
 		/*code in site*/ 
-		var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
+		var actualCode = '$(ChatDOM).ajaxComplete(' + function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
 					console.log(settings.url,object);
@@ -48,7 +48,7 @@ var STAT = {
 						$('#status').html(object);
 					}
 				//}
-		}+ ');chat.chatconnection.sendRequest()';
+		}+ ');';
 		var script2 = document.createElement('script');
 		var script = document.createElement('script');
 		var div_status = document.createElement('div');
