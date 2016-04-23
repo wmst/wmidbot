@@ -61,8 +61,8 @@ var STAT = {
 		
 		document.head.appendChild(script2);
 		setTimeout(function(){
-		document.head.appendChild(script);
-		document.body.appendChild(div_status);
+			document.head.appendChild(script);
+			document.body.appendChild(div_status);
 		},10000);
 		/*end:code in site*/
 	},
