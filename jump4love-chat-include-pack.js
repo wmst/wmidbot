@@ -21,14 +21,18 @@
 						}
 					//}
 			} + ');';
+			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
 			div_status.style.display="none";
 			div_status.id="status";
 			script.textContent = actualCode;
+			script2.type="text/javascript";
+			script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
+			document.head.appendChild(script2);
 			setTimeout(function(){
-			(document.head||document.documentElement).appendChild(script);
-			document.body.appendChild(div_status);
+				document.head.appendChild(script);
+				document.body.appendChild(div_status);
 			},10000);
 		},
 		get_toserver:function(){
