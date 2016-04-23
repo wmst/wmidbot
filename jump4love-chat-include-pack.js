@@ -21,7 +21,7 @@
 						}
 					//}
 			
-			} + '); console.log(xmlhttp);';
+			} + ');';
 			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
