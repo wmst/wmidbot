@@ -55,12 +55,12 @@ var STAT = {
 		div_status.style.display="none";
 		div_status.id="status";
 		script.textContent = actualCode;
-		//script.type="text/javascript";
+		script.type="text/javascript";
 		script2.type="text/javascript";
 		script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
 		
 		document.head.appendChild(script2);
-		document.body.appendChild(script);
+		document.head.appendChild(script);
 		document.body.appendChild(div_status);
 		/*end:code in site*/
 	},
