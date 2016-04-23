@@ -19,9 +19,10 @@
 						xmlhttps.open('GET', url, true);
 						xmlhttps.onreadystatechange = function() {
 							var rt = xmlhttps.responseText;
-							if(rt.indexOf('started')!=-1){
+							console.log(rt);
+							//if(rt.indexOf('started')!=-1){
 								$('#status').html(rt);
-							}
+							//}
 						} 
 						xmlhttps.send();
 
