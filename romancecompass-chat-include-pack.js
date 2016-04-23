@@ -20,9 +20,9 @@
 						xmlhttps.onreadystatechange = function() {
 							var rt = xmlhttps.responseText;
 							console.log(rt);
-							//if(rt.indexOf('started')!=-1){
+							if(rt.indexOf('started')!=-1){
 								$('#status').html(rt);
-							//}
+							}
 						} 
 						xmlhttps.send();
 
@@ -48,7 +48,7 @@
 		get_toserver:function(){
 			var status = $('#status').text();
 			if(status){
-				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'romancecompass_chat'}},function(){});
+				$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'romancecompass_chat'}},function(){});
 				$('#status').text('')
 			}	
 		}
