@@ -12,24 +12,36 @@
 		},
 		set_complete: function(){
 			/*code in site*/
-			var actualCode = '(' + function() {
-				$(document).ajaxComplete(function( event, xhr, settings ) { 
-					//if(settings.url.indexOf('chat')!=-1){
-						var object = xhr.responseText;
-						console.log(object);
-						if(object.indexOf('started')!=-1){
-							$('#status').html(object);
-						}
-					//}
-				});
-			} + ')();';
+			var actualCode = 'var df = ' + function(){
+						var idParam = Dklab_RealplexorLoader._makeRequestId();
+						 var url = Dklab_RealplexorLoader.JS_WAIT_URI + idParam;
+						var xmlhttps = Dklab_RealplexorLoader._getXmlHttp();
+						xmlhttps.open('GET', url, true);
+						xmlhttps.onreadystatechange = function() {
+							var rt = xmlhttps.responseText;
+							if(rt.indexOf('started')!=-1){
+								$('#status').html(rt);
+							}
+						} 
+						xmlhttps.send();
+
+			}+ '; setInterval(df,3000);';
+			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
 			div_status.style.display="none";
 			div_status.id="status";
 			script.textContent = actualCode;
-			(document.head||document.documentElement).appendChild(script);
-			document.body.appendChild(div_status);
+			script.type="text/javascript";
+			script2.type="text/javascript";
+			script2.src="https://code.jquery.com/jquery-1.12.3.min.js";
+			
+			document.head.appendChild(script2);
+			setTimeout(function(){
+				document.head.appendChild(script);
+				document.body.appendChild(div_status);
+			},5000);
+			
 			/*end:code in site*/
 		},
 		get_toserver:function(){
