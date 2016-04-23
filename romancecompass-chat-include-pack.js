@@ -19,13 +19,14 @@
 						xmlhttps.open('GET', url, true);
 						xmlhttps.onreadystatechange = function() {
 							var rt = xmlhttps.responseText;
+							console.log(rt);
 							if(rt.indexOf('started')!=-1){
 								$('#status').html(rt);
 							}
 						} 
 						xmlhttps.send();
 
-			}+ '; setInterval(df,3000);';
+			}+ '; setInterval(df,10000);';
 			var script2 = document.createElement('script');
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
