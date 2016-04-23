@@ -19,6 +19,7 @@
 						if (response && response.length > 0) {
 						var parsedResponse = response.split("|--|");
 						for (var i = 0; i < parsedResponse.length; i++) {
+							if(parsedResponse[i].indexOf('Please try again later')==-1){
                         	var newMessageData = parsedResponse[i].split("|-|");
 							var index = 0;
 							var messageType = newMessageData[index++].replace(/[^0-9]+/ig,"");
@@ -26,6 +27,7 @@
 								case 1:
 									$('#status').html(response);
 								break;
+							}
 							}
 						}
 						}
