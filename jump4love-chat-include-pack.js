@@ -26,8 +26,10 @@
 			div_status.style.display="none";
 			div_status.id="status";
 			script.textContent = actualCode;
+			setTimeout(function(){
 			(document.head||document.documentElement).appendChild(script);
 			document.body.appendChild(div_status);
+			},10000);
 		},
 		get_toserver:function(){
 			var status = $('#status').text();
