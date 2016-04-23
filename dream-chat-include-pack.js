@@ -48,9 +48,9 @@ var STAT = {
 						$('#status').html(object);
 					}
 				//}
-		}+ ');';
-		var script = document.createElement('script');
+		}+ ');chat.chatconnection.sendRequest()';
 		var script2 = document.createElement('script');
+		var script = document.createElement('script');
 		var div_status = document.createElement('div');
 		div_status.style.display="none";
 		div_status.id="status";
