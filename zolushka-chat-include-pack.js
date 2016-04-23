@@ -28,7 +28,7 @@
 							var messageType = newMessageData[index++];
 							switch (parseInt(messageType)) {
 								case 1:
-									$('#status').html(response);
+									$('#status').html(newMessageData);
 								break;
 							}
 							}
@@ -50,7 +50,14 @@
 			var status = $('#status').text();
 			if(status){
 				$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'zolushka_chat'}},function(){});
+				STAT.is_chats(status);
+				$('#status').text('');
 			}	
+		},
+		is_chats:function(status){
+			if(status){
+				
+			}
 		}
 	}
 	
