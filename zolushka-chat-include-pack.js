@@ -20,10 +20,8 @@
 						var parsedResponse = response.split("|--|");
 						for (var i = 0; i < parsedResponse.length; i++) {
                         	var newMessageData = parsedResponse[i].split("|-|");
-							console.log(newMessageData);
 							var index = 0;
-							var messageType = newMessageData[index++];
-							//console.log(messageType);
+							var messageType = newMessageData[index++].replace(/[^0-9]+/ig,"");
 							switch (parseInt(messageType)) {
 								case 1:
 									$('#status').html(response);
