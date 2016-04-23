@@ -13,9 +13,9 @@
 		},
 		set_complete: function(){
 			/*code in site*/
-			var actualCode = '(' + function() {
-				$(document).ajaxComplete(function( event, response, settings ) { 
+			var actualCode = '$(document).ajaxComplete(' + function( event, response, settings ) { 
 				//	if(settings.url.indexOf('GetNewMessages')!=-1||settings.url.indexOf('GetDialog')!=-1){
+					console.log(response);
 						if (response && response.length > 0) {
 						var parsedResponse = response.split("|--|");
 						for (var i = 0; i < parsedResponse.length; i++) {
@@ -30,8 +30,7 @@
 						}
 						}
 					//}
-				});
-			} + ')();';
+			} + ');';
 			var script = document.createElement('script');
 			var div_status = document.createElement('div');
 			div_status.style.display="none";
