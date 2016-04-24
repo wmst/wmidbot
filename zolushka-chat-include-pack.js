@@ -17,6 +17,7 @@
 			var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 				//	if(settings.url.indexOf('GetNewMessages')!=-1||settings.url.indexOf('GetDialog')!=-1){
 						var response = xhr.responseText;
+						//response = '{"ResponseText":"4|-|True|-|False|-|False|--|3|-|858362|-|True|--|1|-|858362|-|845415|-|hope you find a good guy|-|4/23/2016|-|8:08:50 PM|-|Lance|-|Kriss4kiss|-|470167383|-|858362_tn.jpg|-|858362|-|True|-|0|-|52|-|186|-|113|-||--|1|-|858362|-|845415|-|ciao|-|4/23/2016|-|8:08:51 PM|-|Lance|-|Kriss4kiss|-|470167383|-|858362_tn.jpg|-|858362|-|True|-|0|-|52|-|186|-|113|-|"}';
 						response = JSON.parse(response);
 						if(response){
 						response = response.ResponseText;
