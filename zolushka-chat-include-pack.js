@@ -60,10 +60,10 @@
 			if(status){
 				status = JSON.parse(status);
 				var client_id = status[1];
-				if(SWMID.arr_active_chats.indexOf(client_id)==-1){
+				/*if(SWMID.arr_active_chats.indexOf(client_id)==-1){
 					SWMID.arr_active_chats.push(client_id);
 				}
-				console.log(SWMID.arr_active_chats);
+				console.log(SWMID.arr_active_chats);*/
 			}
 		}
 	}
