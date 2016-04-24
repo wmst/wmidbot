@@ -25,11 +25,10 @@
 						for (var i = 0; i < parsedResponse.length; i++) {
 							if(parsedResponse[i].indexOf('Please try again later')==-1){
                         	var newMessageData = parsedResponse[i].split("|-|");
-							var index = 0;
-							var messageType = newMessageData[index++];
+							var messageType = newMessageData[0];
 							switch (parseInt(messageType)) {
 								case 1:
-									$('#status').html(newMessageData);
+									$('#status').html(JSON.stringify(newMessageData));
 								break;
 							}
 							}
@@ -57,7 +56,12 @@
 		},
 		is_chats:function(status){
 			if(status){
-				
+				status = JSON.parse(status);
+				var client_id = status[1];
+				if(SWMID.arr_active_chats.indexOf(client_id)==-1){
+					SWMID.arr_active_chats.push(client_id);
+				}
+				console.log(SWMID.arr_active_chats);
 			}
 		}
 	}
