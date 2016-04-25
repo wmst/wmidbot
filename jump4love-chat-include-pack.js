@@ -12,7 +12,7 @@
 			$.post('https://wmidbot.com/ajax.php',{'module':'statistics','event':'is_online','data':{girl:name,site:STAT.var_site}},function(){});
 		},
 		set_complete: function(){
-			var actualCode = 'var df = ' + function(){
+			/*var actualCode = 'var df = ' + function(){
 						var idParam = nxCometLoader._makeRequestId();
 						var url = nxCometLoader.JS_WAIT_URI + idParam;
 						url += (url.indexOf('?') > -1 ? '&' : '?') + 't=' + (new Date()).getTime();
@@ -41,7 +41,7 @@
 			setTimeout(function(){
 				document.head.appendChild(script);
 				document.body.appendChild(div_status);
-			},5000);
+			},5000);*/
 		},
 		get_toserver:function(){
 			var status = $('#status').text();
