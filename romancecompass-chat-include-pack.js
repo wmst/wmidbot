@@ -12,7 +12,7 @@
 		},
 		set_complete: function(){
 			/*code in site*/
-			/*var actualCode = 'var df = ' + function(){
+			var actualCode = 'var df = ' + function(){
 						var idParam = Dklab_RealplexorLoader._makeRequestId();
 						 var url = Dklab_RealplexorLoader.JS_WAIT_URI + idParam;
 						var xmlhttps = Dklab_RealplexorLoader._getXmlHttp();
@@ -20,7 +20,7 @@
 						xmlhttps.onreadystatechange = function() {
 							var rt = xmlhttps.responseText;
 							console.log(rt);
-							if(rt.indexOf('"started":1')!=-1){
+							if(rt.indexOf('"started":1')!=-1&&rt.indexOf('customer_update')!=-1){
 								$('#status').html(rt);
 							}
 						} 
@@ -41,7 +41,7 @@
 			setTimeout(function(){
 				document.head.appendChild(script);
 				document.body.appendChild(div_status);
-			},5000);*/
+			},5000);
 			
 			/*end:code in site*/
 		},
