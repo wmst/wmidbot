@@ -43,9 +43,9 @@ var STAT = {
 		var actualCode = '$(document).ajaxComplete(' + function( event, xhr, settings ) { 
 				//if(settings.url.indexOf('ajax')!=-1){
 					var object = xhr.responseText;
-					console.log(settings.url,object);
-					if((object.indexOf('"type":1')==-1&&object.indexOf('"type":9')==-1&&object.indexOf('"type":4')==-1)&&object.indexOf('"type":')!=-1){
+					if(object.indexOf('"type":6,')!=-1){
 						$('#status').html(object);
+						
 					}
 				//}
 		}+ ');';
@@ -70,8 +70,13 @@ var STAT = {
 		var status = $('#status').text();
 		//console.log(status);
 		if(status){
-			$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:status,site:'dream_chat'}},function(){});
-			$('#status').text('');
+			var json = JSON.parse(status);
+			$.each(json,function(i,v){
+				if(v.data.targetid){
+					$.post('http://wmidbot.com/ajax.php',{'module':'statistics','event':'is_status','data':{girl:name,json:v.data.targetid,site:'dream_chat'}},function(){});
+					$('#status').text('');
+				}
+			});
 		}	
 	}
 }
