@@ -51,16 +51,16 @@
 					$.get(location.protocol+"//"+location.hostname+"/email/sendmail.aspx?toid="+mess.id+"&func=send",function(r){
 						var gvs=r.match(/id="__VIEWSTATE" value="([^"]+)"/),
 							test=r.match(/id="uxTest" value="([^"]+)"/),
-							params={__VIEWSTATE:gvs[1],uxSubject:mess.s,uxBody:mess.t.replace(/\n/g,"\r\n"),uxTest:test[1],"uxSubmit.x":42,"uxSubmit.y":12},
+							params={__VIEWSTATE:gvs[1],ctl00$body$uxSubject:mess.s,ctl00$body$uxBody:mess.t.replace(/\n/g,"\r\n"),ctl00$body$uxTest:test[1],"ctl00$body$uxSubmit.x":42,"ctl00$body$uxSubmit.y":12},
 
 							//Замена имени
 							uname=r.match(/<span id="uxUserName">\S+ \(([^)]+)\)<\/span>/);
 							uname=uname ? uname[1] : "";
-							params.uxSubject=params.uxSubject.replace(/\{name\}/ig,uname);
-							params.uxBody=params.uxBody.replace(/\{name\}/ig,uname);
+							params.ctl00$body$uxSubject=params.ctl00$body$uxSubject.replace(/\{name\}/ig,uname);
+							params.ctl00$body$uxBody=params.ctl00$body$uxBody.replace(/\{name\}/ig,uname);
 
 						if(storage.attach!=0)
-							params.uxAttachment="on";
+							params.ctl00$body$uxAttachment="on";
 
 						$.post(location.protocol+"//"+location.hostname+"/email/sendmail.aspx?toid="+mess.id+"&func=send",params,function(pr){
 							if(pr.indexOf("Your email was sent")!=-1)
